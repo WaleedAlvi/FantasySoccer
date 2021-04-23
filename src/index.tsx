@@ -3,13 +3,15 @@ import ReactDOM from 'react-dom';
 import './app/layouts/index.css';
 import App from './app/layouts/App';
 import reportWebVitals from './reportWebVitals';
-
-import 'bootstrap/dist/css/bootstrap.min.css';
+import { BrowserRouter } from 'react-router-dom';
+import { StoreContext, store } from './app/stores/rootStore';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <BrowserRouter>
+    <StoreContext.Provider value={store}>
+      <App />
+    </StoreContext.Provider>
+  </BrowserRouter>,
   document.getElementById('root')
 );
 

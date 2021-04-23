@@ -1,23 +1,58 @@
 import { observer } from 'mobx-react-lite';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import Dropdown from 'react-bootstrap/Dropdown';
+import { Link } from 'react-router-dom';
+import { useStore } from '../../app/stores/rootStore';
+import NavBarAccountButton from './NavBarAccountButton';
+import NavBarAccountDropDown from './NavBarAccountDropDown';
 
 const NavBar = () => {
+  const { menuStore } = useStore();
+
   return (
-    <Navbar bg="light" expand="lg">
-      <Navbar.Brand href="#home">Untitled Project</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
-        <Nav className="mr-auto"></Nav>
-        <DropdownButton id="dropdown-basic-button " title="WA">
-          <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-          <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-          <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-        </DropdownButton>
-      </Navbar.Collapse>
-    </Navbar>
+    <nav
+      className="flex justify-between items-center h-16 bg-white text-black relative shadow-sm font-mono"
+      role="navigation"
+    >
+      <Link to="/" className="pl-8">
+        Test Nav
+      </Link>
+      <div
+        className="px-4 cursor-pointer md:hidden"
+        onClick={menuStore.toggleMenu}
+      >
+        <svg
+          className="w-6 h-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M4 6h16M4 12h16M4 18h16"
+          />
+        </svg>
+      </div>
+      <div className="pr-8 md:block hidden">
+        <Link className="p-4 hover:bg-gray-200 rounded-lg" to="/">
+          Home
+        </Link>
+        <Link className="p-4 hover:bg-gray-200 rounded-lg" to="/menu">
+          Menu
+        </Link>
+        <Link className="p-4 hover:bg-gray-200 rounded-lg" to="/about">
+          About
+        </Link>
+        <Link className="p-4 hover:bg-gray-200 rounded-lg" to="/contact">
+          Contact
+        </Link>
+      </div>
+      <div className="pr-8">
+        <NavBarAccountButton />
+        {menuStore.isMenuDDLOpen ? <NavBarAccountDropDown /> : null}
+      </div>
+    </nav>
   );
 };
 
