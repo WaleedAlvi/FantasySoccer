@@ -1,0 +1,12 @@
+G:\Personal Projects\UntitledProject\Domain\bin\Debug\net5.0\Domain.deps.json
+G:\Personal Projects\UntitledProject\Domain\bin\Debug\net5.0\Domain.dll
+G:\Personal Projects\UntitledProject\Domain\bin\Debug\net5.0\ref\Domain.dll
+G:\Personal Projects\UntitledProject\Domain\bin\Debug\net5.0\Domain.pdb
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.csproj.AssemblyReference.cache
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.AssemblyInfoInputs.cache
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.AssemblyInfo.cs
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.csproj.CoreCompileInputs.cache
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.dll
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\ref\Domain.dll
+G:\Personal Projects\UntitledProject\Domain\obj\Debug\net5.0\Domain.pdb
