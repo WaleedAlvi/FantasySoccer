@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "B4D5eshjPpbJSjhoHdwk4IqezRidpKzJHlc57pHhnrQeNzXCBn3PeYQI7rmP+StMSEMktluyRKzsnHXt7s7lWQ==",
+  "dgSpecHash": "7ZnjbexiFlUeQLbiyncR/MuOVL2+/+bzQ7sCvjzQ5rhbSxBNyw5/DwwQQJqoMynD9oqvryYCW5Hf35zcfUxEDQ==",
   "success": true,
-  "projectFilePath": "G:\\Personal Projects\\UntitledProject\\Persistence\\Persistence.csproj",
+  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\Persistence\\Persistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Walee\\.nuget\\packages\\microsoft.data.sqlite.core\\5.0.7\\microsoft.data.sqlite.core.5.0.7.nupkg.sha512",
     "C:\\Users\\Walee\\.nuget\\packages\\microsoft.dotnet.platformabstractions\\3.1.6\\microsoft.dotnet.platformabstractions.3.1.6.nupkg.sha512",

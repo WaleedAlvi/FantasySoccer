@@ -978,11 +978,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Personal Projects\\UntitledProject\\Application\\Application.csproj",
+      "projectUniqueName": "G:\\Personal Projects\\FantasySoccer\\Application\\Application.csproj",
       "projectName": "Application",
-      "projectPath": "G:\\Personal Projects\\UntitledProject\\Application\\Application.csproj",
+      "projectPath": "G:\\Personal Projects\\FantasySoccer\\Application\\Application.csproj",
       "packagesPath": "C:\\Users\\Walee\\.nuget\\packages\\",
-      "outputPath": "G:\\Personal Projects\\UntitledProject\\Application\\obj\\",
+      "outputPath": "G:\\Personal Projects\\FantasySoccer\\Application\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1002,11 +1002,11 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj": {
-              "projectPath": "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj"
+            "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj": {
+              "projectPath": "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj"
             },
-            "G:\\Personal Projects\\UntitledProject\\Persistence\\Persistence.csproj": {
-              "projectPath": "G:\\Personal Projects\\UntitledProject\\Persistence\\Persistence.csproj"
+            "G:\\Personal Projects\\FantasySoccer\\Persistence\\Persistence.csproj": {
+              "projectPath": "G:\\Personal Projects\\FantasySoccer\\Persistence\\Persistence.csproj"
             }
           }
         }

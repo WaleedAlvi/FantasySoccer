@@ -1314,11 +1314,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "G:\\Personal Projects\\UntitledProject\\API\\API.csproj",
+      "projectUniqueName": "G:\\Personal Projects\\FantasySoccer\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "G:\\Personal Projects\\UntitledProject\\API\\API.csproj",
+      "projectPath": "G:\\Personal Projects\\FantasySoccer\\API\\API.csproj",
       "packagesPath": "C:\\Users\\Walee\\.nuget\\packages\\",
-      "outputPath": "G:\\Personal Projects\\UntitledProject\\API\\obj\\",
+      "outputPath": "G:\\Personal Projects\\FantasySoccer\\API\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -1338,8 +1338,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "G:\\Personal Projects\\UntitledProject\\Application\\Application.csproj": {
-              "projectPath": "G:\\Personal Projects\\UntitledProject\\Application\\Application.csproj"
+            "G:\\Personal Projects\\FantasySoccer\\Application\\Application.csproj": {
+              "projectPath": "G:\\Personal Projects\\FantasySoccer\\Application\\Application.csproj"
             }
           }
         }

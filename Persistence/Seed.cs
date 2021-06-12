@@ -10,22 +10,70 @@ namespace Persistence
     {
         public static async Task SeedData(DataContext context)
         {
-            if (context.Persons.Any()) return;
-
-            var persons = new List<Person>
+            if (!context.Countries.Any())
             {
-                new Person
+                var country = new Country
                 {
-                    FirstName = "Waleed",
-                    LastName = "Alvi",
-                    DateOfBirth = new DateTime(1992, 2, 16),
+                    APIFootballID = 1,
+                    CountryName = "Italy",
+                    Flag = "https://media.api-sports.io/flags/it.svg",
                     DateCreated = DateTime.Now,
                     DateUpdated = DateTime.Now,
-                }
-            };
+                };
+                await context.Countries.AddRangeAsync(country);
+                await context.SaveChangesAsync();
+            }
 
-            await context.Persons.AddRangeAsync(persons);
-            await context.SaveChangesAsync();
+            // if (!context.Leagues.Any())
+            // {
+            //     var league = new League
+            //     {
+            //         APIFootballID = 135,
+            //         LeagueName = "Serie A",
+            //         LeagueLogo = "https://media.api-sports.io/football/leagues/135.png",
+            //         CountryID = context.Countries.Single(c => c.CountryName == "Italy").CountryID,
+            //         DateCreated = DateTime.Now,
+            //         DateUpdated = DateTime.Now,
+
+            //     };
+            //     await context.Leagues.AddRangeAsync(league);
+            //     await context.SaveChangesAsync();
+            // }
+
+            // if (!context.Teams.Any())
+            // {
+            //     var team = new Team
+            //     {
+            //         APIFootballID = 489,
+            //         TeamName = "AC Milan",
+            //         TeamLogo = "https://media.api-sports.io/football/teams/489.png",
+            //         LeagueID = context.Leagues.Single(c => c.LeagueName == "Serie A").LeagueID,
+            //         DateCreated = DateTime.Now,
+            //         DateUpdated = DateTime.Now,
+
+            //     };
+            //     await context.Teams.AddRangeAsync(team);
+            //     await context.SaveChangesAsync();
+            // }
+
+            // if (!context.Persons.Any())
+            // {
+            //     var persons = new List<Person>
+            //     {
+            //         new Person
+            //         {
+            //             FirstName = "Waleed",
+            //             LastName = "Alvi",
+            //             DateOfBirth = new DateTime(1992, 2, 16),
+            //             CountryID = context.Countries.Single(c => c.CountryName == "Italy").CountryID,
+            //             TeamID = context.Teams.Single(c => c.TeamName == "AC Milan").TeamID,
+            //             DateCreated = DateTime.Now,
+            //             DateUpdated = DateTime.Now,
+            //         }
+            //     };
+            //     await context.Persons.AddRangeAsync(persons);
+            //     await context.SaveChangesAsync();
+            // }
         }
     }
 }

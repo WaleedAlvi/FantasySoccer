@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj": {}
+    "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj": {}
   },
   "projects": {
-    "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj": {
+    "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj",
+        "projectUniqueName": "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj",
+        "projectPath": "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\Walee\\.nuget\\packages\\",
-        "outputPath": "G:\\Personal Projects\\UntitledProject\\Domain\\obj\\",
+        "outputPath": "G:\\Personal Projects\\FantasySoccer\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

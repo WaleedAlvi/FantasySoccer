@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "VO+pkm/J77bQeYm+54xrduhbJBWE2HBChb1OTYyw3XyJDCbfE4P8Fp5L4nWZ68rLGRr5ueKHvqhdj/mPRpGmDQ==",
+  "dgSpecHash": "nH2qcIp5aUC3rV4R/YboAEhevhwkW20h9j2WpnuEm8FdklMIkDee2tSgJZc53E1JZ77ARA2yTkz25fDm5DTXTw==",
   "success": true,
-  "projectFilePath": "G:\\Personal Projects\\UntitledProject\\Domain\\Domain.csproj",
+  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\Domain\\Domain.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
