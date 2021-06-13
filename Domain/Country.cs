@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -12,8 +13,8 @@ namespace Domain
         public DateTime DateUpdated { get; set; }
 
 
-        public League League { get; set; }
-        public Person Person { get; set; }
-        public Player Player { get; set; }
+        public ICollection<League> League { get; set; }
+        public ICollection<Person> Person { get; set; }
+        public ICollection<Player> Player { get; set; }
     }
 }

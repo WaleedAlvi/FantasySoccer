@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210613165127_Changed Country Foreign Key Props to One to Many Relationships")]
+    partial class ChangedCountryForeignKeyPropstoOnetoManyRelationships
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -500,7 +502,8 @@ namespace Persistence.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("TeamID");
+                    b.HasIndex("TeamID")
+                        .IsUnique();
 
                     b.ToTable("Persons");
                 });
@@ -561,7 +564,8 @@ namespace Persistence.Migrations
 
                     b.HasIndex("CountryID");
 
-                    b.HasIndex("TeamID");
+                    b.HasIndex("TeamID")
+                        .IsUnique();
 
                     b.ToTable("Players");
                 });
@@ -990,8 +994,8 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Team", "Team")
-                        .WithMany("Person")
-                        .HasForeignKey("TeamID")
+                        .WithOne("Person")
+                        .HasForeignKey("Domain.Person", "TeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -1009,8 +1013,8 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.HasOne("Domain.Team", "Team")
-                        .WithMany("Player")
-                        .HasForeignKey("TeamID")
+                        .WithOne("Player")
+                        .HasForeignKey("Domain.Player", "TeamID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

@@ -44,8 +44,8 @@ namespace Persistence
             modelBuilder.Entity<Person>().Property(p => p.TeamID).IsRequired();
             modelBuilder.Entity<Person>().Property(p => p.DateCreated).IsRequired();
             modelBuilder.Entity<Person>().Property(p => p.DateUpdated).IsRequired();
-            modelBuilder.Entity<Person>().HasOne(b => b.Team).WithOne(b => b.Person).HasForeignKey<Person>(b => b.TeamID);
-            modelBuilder.Entity<Person>().HasOne(b => b.Country).WithOne(b => b.Person).HasForeignKey<Person>(b => b.CountryID).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Person>().HasOne(b => b.Team).WithMany(b => b.Person).HasForeignKey(b => b.TeamID);
+            modelBuilder.Entity<Person>().HasOne(b => b.Country).WithMany(b => b.Person).HasForeignKey(b => b.CountryID).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region User
@@ -75,7 +75,7 @@ namespace Persistence
             modelBuilder.Entity<League>().Property(p => p.CountryID).IsRequired();
             modelBuilder.Entity<League>().Property(p => p.DateCreated).IsRequired();
             modelBuilder.Entity<League>().Property(p => p.DateUpdated).IsRequired();
-            modelBuilder.Entity<League>().HasOne(b => b.Country).WithOne(b => b.League).HasForeignKey<League>(b => b.CountryID);
+            modelBuilder.Entity<League>().HasOne(b => b.Country).WithMany(b => b.League).HasForeignKey(b => b.CountryID);
             #endregion
 
             #region Team
@@ -105,8 +105,8 @@ namespace Persistence
             modelBuilder.Entity<Player>().Property(p => p.Value).IsRequired();
             modelBuilder.Entity<Player>().Property(p => p.DateCreated).IsRequired();
             modelBuilder.Entity<Player>().Property(p => p.DateUpdated).IsRequired();
-            modelBuilder.Entity<Player>().HasOne(b => b.Team).WithOne(b => b.Player).HasForeignKey<Player>(b => b.TeamID).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<Player>().HasOne(b => b.Country).WithOne(b => b.Player).HasForeignKey<Player>(b => b.CountryID).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Player>().HasOne(b => b.Team).WithMany(b => b.Player).HasForeignKey(b => b.TeamID).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<Player>().HasOne(b => b.Country).WithMany(b => b.Player).HasForeignKey(b => b.CountryID).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region Matchday
