@@ -27,3 +27,5 @@ yarn-error.log*
 appsettings.json
 /API/bin
 /API/obj
+bin
+obj

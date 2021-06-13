@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
@@ -14,29 +15,32 @@ namespace Persistence.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "5.0.7");
+                .HasAnnotation("Relational:MaxIdentifierLength", 128)
+                .HasAnnotation("ProductVersion", "5.0.7")
+                .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
             modelBuilder.Entity("Domain.Country", b =>
                 {
                     b.Property<Guid>("CountryID")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("APIFootballID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("CountryName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Flag")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("CountryID");
 
@@ -47,31 +51,31 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("FantasyLeagueID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<bool?>("IsPublic")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("bit")
                         .HasDefaultValue(true);
 
                     b.Property<string>("LeagueCaption")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeagueKey")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeagueLogo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("Default League Logo");
 
                     b.Property<string>("LeagueName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("NumberOfTeams")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("int")
                         .HasDefaultValue(10);
 
                     b.HasKey("FantasyLeagueID");
@@ -82,10 +86,10 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.FantasyLeagueAdmin", b =>
                 {
                     b.Property<Guid>("FantasyLeagueID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PersonID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FantasyLeagueID", "PersonID");
 
@@ -97,10 +101,10 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.FantasyLeagueTeams", b =>
                 {
                     b.Property<Guid>("FantasyLeagueID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("FantasyTeamID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FantasyLeagueID", "FantasyTeamID");
 
@@ -113,75 +117,75 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("FantasyTeamID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("DefenderFiveID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DefenderFourID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DefenderOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DefenderThreeID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("DefenderTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FantasyTeamLogo")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT")
+                        .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("Hello World, This  is an image");
 
                     b.Property<Guid>("ForwardOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ForwardThreeID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("ForwardTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GoalieOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GoalieTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MidfielderFiveID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MidfielderFourID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MidfielderOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MidfielderThreeID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MidfielderTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("MoneyBalance")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<Guid>("PersonID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("PlayerID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("PlayerID1")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("FantasyTeamID");
 
@@ -228,20 +232,20 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("FormationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("DefenderCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("FormationName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("ForwardCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("MidfielderCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("FormationID");
 
@@ -251,29 +255,33 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.League", b =>
                 {
                     b.Property<Guid>("LeagueID")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("APIFootballID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("CountryID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LeagueLogo")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeagueName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("LeagueID");
+
+                    b.HasIndex("CountryID")
+                        .IsUnique();
 
                     b.ToTable("Leagues");
                 });
@@ -282,22 +290,22 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("MatchdayID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("EndDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("LeagueID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("MatchdayCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Season")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("StartDate")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.HasKey("MatchdayID");
 
@@ -309,55 +317,56 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.MatchdayTeam", b =>
                 {
                     b.Property<Guid>("MatchdayTeamID")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BenchOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BenchThreeID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("BenchTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("GoalieID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MatchdayTeamConfigurationID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerEightID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerFiveID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerFourID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerNineID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("PlayerNinePlayerID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerOneID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerSevenID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerSixID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerTenID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerThreeID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PlayerTwoID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MatchdayTeamID");
 
@@ -396,22 +405,22 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("MatchdayTeamConfigurationID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CaptainID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("FantasyTeamID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("FormationID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MatchdayID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MatchdayTeamID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MatchdayTeamConfigurationID");
 
@@ -423,38 +432,48 @@ namespace Persistence.Migrations
 
                     b.HasIndex("MatchdayID");
 
+                    b.HasIndex("MatchdayTeamID")
+                        .IsUnique();
+
                     b.ToTable("MatchdayTeamConfigurations");
                 });
 
             modelBuilder.Entity("Domain.Person", b =>
                 {
                     b.Property<Guid>("PersonID")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("CountryID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("TeamID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("PersonID");
+
+                    b.HasIndex("CountryID")
+                        .IsUnique();
+
+                    b.HasIndex("TeamID")
+                        .IsUnique();
 
                     b.ToTable("Persons");
                 });
@@ -463,55 +482,61 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("PlayerID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("APIFootballID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("CountryID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateOfBirth")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Height")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<bool>("Injured")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Position")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PreferredName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("TeamID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<double>("Value")
-                        .HasColumnType("REAL");
+                        .HasColumnType("float");
 
                     b.Property<int>("Weight")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("PlayerID");
+
+                    b.HasIndex("CountryID")
+                        .IsUnique();
+
+                    b.HasIndex("TeamID")
+                        .IsUnique();
 
                     b.ToTable("Players");
                 });
@@ -519,29 +544,33 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Team", b =>
                 {
                     b.Property<Guid>("TeamID")
-                        .HasColumnType("TEXT");
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("APIFootballID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("LeagueID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("TeamLogo")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TeamName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("TeamID");
+
+                    b.HasIndex("LeagueID")
+                        .IsUnique();
 
                     b.ToTable("Teams");
                 });
@@ -550,50 +579,26 @@ namespace Persistence.Migrations
                 {
                     b.Property<Guid>("UserID")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("DateCreated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DateUpdated")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("FirebaseID")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("PersonID")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("UserID");
 
+                    b.HasIndex("PersonID")
+                        .IsUnique();
+
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("Domain.Country", b =>
-                {
-                    b.HasOne("Domain.League", "League")
-                        .WithOne("Country")
-                        .HasForeignKey("Domain.Country", "CountryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Person", "Person")
-                        .WithOne("Country")
-                        .HasForeignKey("Domain.Country", "CountryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.Player", "Player")
-                        .WithOne("Country")
-                        .HasForeignKey("Domain.Country", "CountryID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("League");
-
-                    b.Navigation("Person");
-
-                    b.Navigation("Player");
                 });
 
             modelBuilder.Entity("Domain.FantasyLeagueAdmin", b =>
@@ -639,91 +644,91 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Player", "DefenderFive")
                         .WithMany("DefenderFiveFantasyTeams")
                         .HasForeignKey("DefenderFiveID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "DefenderFour")
                         .WithMany("DefenderFourFantasyTeams")
                         .HasForeignKey("DefenderFourID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "DefenderOne")
                         .WithMany("DefenderOneFantasyTeams")
                         .HasForeignKey("DefenderOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "DefenderThree")
                         .WithMany("DefenderThreeFantasyTeams")
                         .HasForeignKey("DefenderThreeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "DefenderTwo")
                         .WithMany("DefenderTwoFantasyTeams")
                         .HasForeignKey("DefenderTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "ForwardOne")
                         .WithMany("ForwardOneFantasyTeams")
                         .HasForeignKey("ForwardOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "ForwardThree")
                         .WithMany("ForwardThreeFantasyTeams")
                         .HasForeignKey("ForwardThreeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "ForwardTwo")
                         .WithMany("ForwardTwoFantasyTeams")
                         .HasForeignKey("ForwardTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "GoalieOne")
                         .WithMany("GoalieOneFantasyTeams")
                         .HasForeignKey("GoalieOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "GoalieTwo")
                         .WithMany("GoalieTwoFantasyTeams")
                         .HasForeignKey("GoalieTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "MidfielderFive")
                         .WithMany("MidfielderFiveFantasyTeams")
                         .HasForeignKey("MidfielderFiveID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "MidfielderFour")
                         .WithMany("MidfielderFourFantasyTeams")
                         .HasForeignKey("MidfielderFourID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "MidfielderOne")
                         .WithMany("MidfielderOneFantasyTeams")
                         .HasForeignKey("MidfielderOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "MidfielderThree")
                         .WithMany("MidfielderThreeFantasyTeams")
                         .HasForeignKey("MidfielderThreeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "MidfielderTwo")
                         .WithMany("MidfielderTwoFantasyTeams")
                         .HasForeignKey("MidfielderTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Person", "Person")
@@ -775,13 +780,13 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.League", b =>
                 {
-                    b.HasOne("Domain.Team", "Team")
+                    b.HasOne("Domain.Country", "Country")
                         .WithOne("League")
-                        .HasForeignKey("Domain.League", "LeagueID")
+                        .HasForeignKey("Domain.League", "CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Team");
+                    b.Navigation("Country");
                 });
 
             modelBuilder.Entity("Domain.Matchday", b =>
@@ -800,49 +805,43 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Player", "BenchOne")
                         .WithMany("BenchOneMatchdayTeams")
                         .HasForeignKey("BenchOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "BenchThree")
                         .WithMany("BenchThreeMatchdayTeams")
                         .HasForeignKey("BenchThreeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "BenchTwo")
                         .WithMany("BenchTwoMatchdayTeams")
                         .HasForeignKey("BenchTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "Goalie")
                         .WithMany("GoalieMatchdayTeams")
                         .HasForeignKey("GoalieID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Domain.MatchdayTeamConfiguration", "MatchdayTeamConfiguration")
-                        .WithOne("MatchdayTeam")
-                        .HasForeignKey("Domain.MatchdayTeam", "MatchdayTeamID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerFive")
                         .WithMany("PlayerFiveMatchdayTeams")
                         .HasForeignKey("PlayerFiveID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerFour")
                         .WithMany("PlayerFourMatchdayTeams")
                         .HasForeignKey("PlayerFourID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerEight")
                         .WithMany("PlayerEightMatchdayTeams")
                         .HasForeignKey("PlayerNineID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerNine")
@@ -852,37 +851,37 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Player", "PlayerOne")
                         .WithMany("PlayerOneMatchdayTeams")
                         .HasForeignKey("PlayerOneID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerSeven")
                         .WithMany("PlayerSevenMatchdayTeams")
                         .HasForeignKey("PlayerSevenID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerSix")
                         .WithMany("PlayerSixMatchdayTeams")
                         .HasForeignKey("PlayerSixID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerTen")
                         .WithMany("PlayerTenMatchdayTeams")
                         .HasForeignKey("PlayerTenID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerThree")
                         .WithMany("PlayerThreeMatchdayTeams")
                         .HasForeignKey("PlayerThreeID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Player", "PlayerTwo")
                         .WithMany("PlayerTwoMatchdayTeams")
                         .HasForeignKey("PlayerTwoID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.Navigation("BenchOne");
@@ -892,8 +891,6 @@ namespace Persistence.Migrations
                     b.Navigation("BenchTwo");
 
                     b.Navigation("Goalie");
-
-                    b.Navigation("MatchdayTeamConfiguration");
 
                     b.Navigation("PlayerEight");
 
@@ -921,24 +918,30 @@ namespace Persistence.Migrations
                     b.HasOne("Domain.Player", "Player")
                         .WithMany("MatchdayTeamConfiguration")
                         .HasForeignKey("CaptainID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.FantasyTeam", "FantasyTeam")
                         .WithMany("MatchdayTeamConfiguration")
                         .HasForeignKey("FantasyTeamID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Formation", "Formation")
                         .WithMany("MatchdayTeamConfiguration")
                         .HasForeignKey("FormationID")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Matchday", "Matchday")
                         .WithMany("MatchdayTeamConfiguration")
                         .HasForeignKey("MatchdayID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.MatchdayTeam", "MatchdayTeam")
+                        .WithOne("MatchdayTeamConfiguration")
+                        .HasForeignKey("Domain.MatchdayTeamConfiguration", "MatchdayTeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -948,33 +951,74 @@ namespace Persistence.Migrations
 
                     b.Navigation("Matchday");
 
+                    b.Navigation("MatchdayTeam");
+
                     b.Navigation("Player");
                 });
 
             modelBuilder.Entity("Domain.Person", b =>
                 {
-                    b.HasOne("Domain.User", "User")
+                    b.HasOne("Domain.Country", "Country")
                         .WithOne("Person")
-                        .HasForeignKey("Domain.Person", "PersonID")
+                        .HasForeignKey("Domain.Person", "CountryID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Team", "Team")
+                        .WithOne("Person")
+                        .HasForeignKey("Domain.Person", "TeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("User");
+                    b.Navigation("Country");
+
+                    b.Navigation("Team");
+                });
+
+            modelBuilder.Entity("Domain.Player", b =>
+                {
+                    b.HasOne("Domain.Country", "Country")
+                        .WithOne("Player")
+                        .HasForeignKey("Domain.Player", "CountryID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Team", "Team")
+                        .WithOne("Player")
+                        .HasForeignKey("Domain.Player", "TeamID")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.Navigation("Country");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Domain.Team", b =>
                 {
-                    b.HasOne("Domain.Person", "Person")
+                    b.HasOne("Domain.League", "League")
                         .WithOne("Team")
-                        .HasForeignKey("Domain.Team", "TeamID")
+                        .HasForeignKey("Domain.Team", "LeagueID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Domain.Player", "Player")
-                        .WithOne("Team")
-                        .HasForeignKey("Domain.Team", "TeamID")
+                    b.Navigation("League");
+                });
+
+            modelBuilder.Entity("Domain.User", b =>
+                {
+                    b.HasOne("Domain.Person", "Person")
+                        .WithOne("User")
+                        .HasForeignKey("Domain.User", "PersonID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Person");
+                });
+
+            modelBuilder.Entity("Domain.Country", b =>
+                {
+                    b.Navigation("League");
 
                     b.Navigation("Person");
 
@@ -1002,9 +1046,9 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.League", b =>
                 {
-                    b.Navigation("Country");
-
                     b.Navigation("MatchDays");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Domain.Matchday", b =>
@@ -1012,20 +1056,18 @@ namespace Persistence.Migrations
                     b.Navigation("MatchdayTeamConfiguration");
                 });
 
-            modelBuilder.Entity("Domain.MatchdayTeamConfiguration", b =>
+            modelBuilder.Entity("Domain.MatchdayTeam", b =>
                 {
-                    b.Navigation("MatchdayTeam");
+                    b.Navigation("MatchdayTeamConfiguration");
                 });
 
             modelBuilder.Entity("Domain.Person", b =>
                 {
-                    b.Navigation("Country");
-
                     b.Navigation("FantasyLeagueAdmins");
 
                     b.Navigation("FantasyTeams");
 
-                    b.Navigation("Team");
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Domain.Player", b =>
@@ -1035,8 +1077,6 @@ namespace Persistence.Migrations
                     b.Navigation("BenchThreeMatchdayTeams");
 
                     b.Navigation("BenchTwoMatchdayTeams");
-
-                    b.Navigation("Country");
 
                     b.Navigation("DefenderFiveFantasyTeams");
 
@@ -1095,18 +1135,13 @@ namespace Persistence.Migrations
                     b.Navigation("PlayerThreeMatchdayTeams");
 
                     b.Navigation("PlayerTwoMatchdayTeams");
-
-                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("Domain.Team", b =>
                 {
-                    b.Navigation("League");
-                });
-
-            modelBuilder.Entity("Domain.User", b =>
-                {
                     b.Navigation("Person");
+
+                    b.Navigation("Player");
                 });
 #pragma warning restore 612, 618
         }
