@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "I8Em5NQqrZpmuTS73bfXFflWmeCxYwbOTbJAhlkGuCpubp/IvEpgOuz/5VVHqDbMx1aWUUFfdaCRilkaQY6/Jg==",
+  "dgSpecHash": "V9NN5SOdDJUEUYXuNF639hwiOZ0Lx92eAJVenaotyTsgFh8oczKjUmLbWz932eIWhFBpTKbwNVVG7k8jd8IGgg==",
   "success": true,
-  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\api\\API.csproj",
+  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Walee\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Walee\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
