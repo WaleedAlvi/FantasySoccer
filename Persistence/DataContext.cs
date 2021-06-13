@@ -63,6 +63,8 @@ namespace Persistence
             modelBuilder.Entity<Formation>().Property(p => p.DefenderCount).IsRequired();
             modelBuilder.Entity<Formation>().Property(p => p.MidfielderCount).IsRequired();
             modelBuilder.Entity<Formation>().Property(p => p.ForwardCount).IsRequired();
+            modelBuilder.Entity<Formation>().Property(p => p.DateCreated).IsRequired();
+            modelBuilder.Entity<Formation>().Property(p => p.DateUpdated).IsRequired();
             #endregion
 
             #region League
@@ -114,6 +116,8 @@ namespace Persistence
             modelBuilder.Entity<Matchday>().Property(p => p.MatchdayCount).IsRequired();
             modelBuilder.Entity<Matchday>().Property(p => p.StartDate).IsRequired();
             modelBuilder.Entity<Matchday>().Property(p => p.EndDate).IsRequired();
+            modelBuilder.Entity<Matchday>().Property(p => p.DateCreated).IsRequired();
+            modelBuilder.Entity<Matchday>().Property(p => p.DateUpdated).IsRequired();
             modelBuilder.Entity<Matchday>().HasOne(b => b.League).WithMany(b => b.MatchDays).HasForeignKey(f => f.LeagueID);
             #endregion
 
@@ -163,6 +167,8 @@ namespace Persistence
             modelBuilder.Entity<FantasyLeague>().Property(p => p.LeagueLogo).HasDefaultValue("Default League Logo");
             modelBuilder.Entity<FantasyLeague>().Property(p => p.IsPublic).HasDefaultValue(true);
             modelBuilder.Entity<FantasyLeague>().Property(p => p.NumberOfTeams).IsRequired().HasDefaultValue(10);
+            modelBuilder.Entity<FantasyLeague>().Property(p => p.DateCreated).IsRequired();
+            modelBuilder.Entity<FantasyLeague>().Property(p => p.DateUpdated).IsRequired();
             #endregion
 
             #region FantasyLeagueAdmin
@@ -179,6 +185,8 @@ namespace Persistence
 
             #region MatchdayTeam
             modelBuilder.Entity<MatchdayTeam>().HasKey(key => key.MatchdayTeamID);
+            modelBuilder.Entity<MatchdayTeam>().Property(p => p.DateCreated).IsRequired();
+            modelBuilder.Entity<MatchdayTeam>().Property(p => p.DateUpdated).IsRequired();
             modelBuilder.Entity<MatchdayTeam>().HasOne(b => b.MatchdayTeamConfiguration).WithOne(b => b.MatchdayTeam).HasForeignKey<MatchdayTeam>(b => b.MatchdayTeamConfigurationID);
             modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.Goalie).WithMany(p => p.GoalieMatchdayTeams).HasForeignKey(t => t.GoalieID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.PlayerOne).WithMany(p => p.PlayerOneMatchdayTeams).HasForeignKey(t => t.PlayerOneID).OnDelete(DeleteBehavior.NoAction);
@@ -197,6 +205,8 @@ namespace Persistence
 
             #region MatchdayTeamConfiguration
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasKey(key => key.MatchdayTeamConfigurationID);
+            modelBuilder.Entity<MatchdayTeamConfiguration>().Property(p => p.DateCreated).IsRequired();
+            modelBuilder.Entity<MatchdayTeamConfiguration>().Property(p => p.DateUpdated).IsRequired();
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.FantasyTeam).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.FantasyTeamID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.Matchday).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.MatchdayID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.Formation).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.FormationID).OnDelete(DeleteBehavior.NoAction);

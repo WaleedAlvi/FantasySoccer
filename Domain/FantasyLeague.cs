@@ -12,6 +12,8 @@ namespace Domain
         public bool? IsPublic { get; set; }
         public string LeagueKey { get; set; }
         public int NumberOfTeams { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
 
         public ICollection<FantasyLeagueAdmin> FantasyLeagueAdmins { get; set; }

@@ -20,6 +20,8 @@ namespace Domain
         public Guid BenchOneID { get; set; }
         public Guid BenchTwoID { get; set; }
         public Guid BenchThreeID { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
 
         public Player Goalie { get; set; }

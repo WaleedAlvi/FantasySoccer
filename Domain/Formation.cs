@@ -10,6 +10,8 @@ namespace Domain
         public int DefenderCount { get; set; }
         public int MidfielderCount { get; set; }
         public int ForwardCount { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
 
         public ICollection<MatchdayTeamConfiguration> MatchdayTeamConfiguration { get; set; }

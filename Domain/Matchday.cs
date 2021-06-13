@@ -11,6 +11,8 @@ namespace Domain
         public int MatchdayCount { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
+        public DateTime DateCreated { get; set; }
+        public DateTime DateUpdated { get; set; }
 
 
         public League League { get; set; }
