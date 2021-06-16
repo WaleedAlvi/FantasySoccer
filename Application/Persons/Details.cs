@@ -2,30 +2,39 @@ using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
-using Domain;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Persistence;
 
 namespace Application.Persons
 {
     public class Details
     {
-        public class Query : IRequest<Result<Person>>
+        public class Query : IRequest<Result<PersonDto>>
         {
             public Guid PersonID { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<Person>>
+        public class Handler : IRequestHandler<Query, Result<PersonDto>>
         {
             private readonly DataContext _context;
-            public Handler(DataContext context)
+            private readonly IMapper _mapper;
+            public Handler(DataContext context, IMapper mapper)
             {
                 _context = context;
+                _mapper = mapper;
+
             }
 
-            public async Task<Result<Person>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PersonDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                return Result<Person>.Success(await _context.Persons.FindAsync(request.PersonID));
+                var person = await _context.Persons
+                    .ProjectTo<PersonDto>(_mapper.ConfigurationProvider)
+                    .FirstOrDefaultAsync(p => p.PersonID == request.PersonID);
+
+                return Result<PersonDto>.Success(person);
             }
         }
     }

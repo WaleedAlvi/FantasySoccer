@@ -74,6 +74,21 @@ namespace Persistence
                 await context.Persons.AddRangeAsync(persons);
                 await context.SaveChangesAsync();
             }
+
+            if (!context.Users.Any())
+            {
+                var user = new List<User>
+                {
+                    new User
+                    {
+                        FirebaseID = 123234,
+                        PersonID = context.Persons.Single(c => c.FirstName == "Waleed").PersonID,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+
+                    }
+                };
+            }
         }
     }
 }
