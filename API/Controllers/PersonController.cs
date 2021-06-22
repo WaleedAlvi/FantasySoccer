@@ -21,8 +21,14 @@ namespace API.Controllers
             return HandleRequest(await Mediator.Send(new Details.Query { PersonID = id }));
         }
 
+        [HttpGet("FireBaseID/{id}")]
+        public async Task<IActionResult> GetPersonByFireBaseID(string id)
+        {
+            return HandleRequest(await Mediator.Send(new DetailsByFirebaseID.Query { FireBaseID = id }));
+        }
+
         [HttpPost]
-        public async Task<IActionResult> CreatePerson([FromBody] Person person)
+        public async Task<IActionResult> CreatePerson([FromBody] PersonUserDto person)
         {
             return HandleRequest(await Mediator.Send(new Create.Command { Person = person }));
         }

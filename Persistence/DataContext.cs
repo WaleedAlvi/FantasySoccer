@@ -50,7 +50,7 @@ namespace Persistence
 
             #region User
             modelBuilder.Entity<User>().HasKey(key => key.UserID);
-            modelBuilder.Entity<User>().Property(p => p.FirebaseID).IsRequired();
+            modelBuilder.Entity<User>().Property(p => p.FirebaseID).IsRequired().HasMaxLength(28);
             modelBuilder.Entity<User>().Property(p => p.PersonID).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.DateCreated).IsRequired();
             modelBuilder.Entity<User>().Property(p => p.DateUpdated).IsRequired();

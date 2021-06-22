@@ -81,7 +81,6 @@ namespace Persistence
                 {
                     new User
                     {
-                        FirebaseID = 123234,
                         PersonID = context.Persons.Single(c => c.FirstName == "Waleed").PersonID,
                         DateCreated = DateTime.Now,
                         DateUpdated = DateTime.Now,

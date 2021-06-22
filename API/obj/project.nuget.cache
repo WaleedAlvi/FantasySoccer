@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Je2L6vI74hQjYMnMSUmHqZuOiakJzfP2BPantL1TSJrLZ+z5VI3jMxGOzAV4rhnp01v9fhcYsHXdKT5OETcZiQ==",
+  "dgSpecHash": "RqKkMIkFHzIwpu3b56KIviF/ypDYCitR2u2GpQzqHSmbCk2R/Gc+Ye1og63cx0VfdxgwLPXSFkZo1eHTwKZxRg==",
   "success": true,
-  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\api\\API.csproj",
+  "projectFilePath": "G:\\Personal Projects\\FantasySoccer\\API\\API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Walee\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\Walee\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",

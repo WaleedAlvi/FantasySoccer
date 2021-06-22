@@ -12,14 +12,14 @@ namespace Application.Persons
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Person Person { get; set; }
+            public PersonUserDto Person { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Person).SetValidator(new PersonValidator());
+                RuleFor(x => x.Person).SetValidator(new PersonUserValidator());
             }
         }
 
@@ -33,7 +33,26 @@ namespace Application.Persons
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                _context.Persons.Add(request.Person);
+                var newPerson = new Person
+                {
+                    FirstName = request.Person.FirstName,
+                    LastName = request.Person.LastName,
+                    DateOfBirth = request.Person.DateOfBirth,
+                    CountryID = request.Person.CountryID,
+                    TeamID = request.Person.TeamID,
+                    DateCreated = request.Person.DateCreated,
+                    DateUpdated = request.Person.DateUpdated,
+                };
+
+                _context.Persons.Add(newPerson);
+
+                _context.Users.Add(new User
+                {
+                    FirebaseID = request.Person.FireBaseID,
+                    PersonID = newPerson.PersonID,
+                    DateCreated = request.Person.DateCreated,
+                    DateUpdated = request.Person.DateUpdated,
+                });
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to create account");
                 return Result<Unit>.Success(Unit.Value);
