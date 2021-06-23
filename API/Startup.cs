@@ -2,6 +2,7 @@ using System;
 using API.Middleware;
 using Application.Core;
 using Application.Persons;
+using Application.Leagues;
 using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
@@ -44,7 +45,10 @@ namespace API
             {
                 policy.AllowAnyMethod().AllowAnyHeader().WithOrigins("http://localhost:3000");
             }));
-            services.AddMediatR(typeof(List.Handler).Assembly);
+            services.AddMediatR(typeof(Application.Persons.List.Handler).Assembly);
+            services.AddMediatR(typeof(Application.Leagues.List.Handler).Assembly);
+            services.AddMediatR(typeof(Application.Teams.List.Handler).Assembly);
+            services.AddMediatR(typeof(Application.Players.List.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         }
 

@@ -1,6 +1,7 @@
 using Application.Countries;
 using Application.Leagues;
 using Application.Persons;
+using Application.Players;
 using Application.Teams;
 using AutoMapper;
 using Domain;
@@ -17,6 +18,7 @@ namespace Application.Core
             CreateMap<Team, TeamDto>();
             CreateMap<League, LeagueDto>();
             CreateMap<User, UserDto>();
+            CreateMap<Player, PlayerDto>();
         }
     }
 }

@@ -1,7 +1,6 @@
 using System;
 using Application.Countries;
 using Application.Teams;
-using Domain;
 
 namespace Application.Persons
 {
