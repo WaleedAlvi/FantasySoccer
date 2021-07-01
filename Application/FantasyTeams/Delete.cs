@@ -5,13 +5,13 @@ using Application.Core;
 using MediatR;
 using Persistence;
 
-namespace Application.Persons
+namespace Application.FantasyTeams
 {
     public class Delete
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Guid PersonID { get; set; }
+            public Guid FantasyTeamID { get; set; }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -24,11 +24,11 @@ namespace Application.Persons
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var person = await _context.Persons.FindAsync(request.PersonID);
-                if (person == null) return null;
-                _context.Remove(person);
+                var fantasyTeam = await _context.FantasyTeams.FindAsync(request.FantasyTeamID);
+                if (fantasyTeam == null) return null;
+                _context.Remove(fantasyTeam);
                 var result = await _context.SaveChangesAsync() > 0;
-                if (!result) return Result<Unit>.Failure("Failed to delete account");
+                if (!result) return Result<Unit>.Failure("Failed to delete fantasy team");
                 return Result<Unit>.Success(Unit.Value);
             }
         }

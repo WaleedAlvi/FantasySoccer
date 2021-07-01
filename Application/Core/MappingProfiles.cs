@@ -1,4 +1,5 @@
 using Application.Countries;
+using Application.FantasyTeams;
 using Application.Leagues;
 using Application.Persons;
 using Application.Players;
@@ -19,6 +20,8 @@ namespace Application.Core
             CreateMap<League, LeagueDto>();
             CreateMap<User, UserDto>();
             CreateMap<Player, PlayerDto>();
+            CreateMap<FantasyTeam, FantasyTeam>();
+            CreateMap<FantasyTeam, FantasyTeamDto>();
         }
     }
 }

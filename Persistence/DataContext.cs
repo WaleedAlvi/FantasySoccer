@@ -123,6 +123,7 @@ namespace Persistence
 
             #region FantasyTeam
             modelBuilder.Entity<FantasyTeam>().HasKey(key => key.FantasyTeamID);
+            modelBuilder.Entity<FantasyTeam>().Property(p => p.FantasyTeamName).IsRequired();
             modelBuilder.Entity<FantasyTeam>().Property(p => p.FantasyTeamLogo).HasDefaultValue("Hello World, This  is an image");
             modelBuilder.Entity<FantasyTeam>().Property(p => p.PersonID).IsRequired();
             modelBuilder.Entity<FantasyTeam>().Property(p => p.MoneyBalance).IsRequired();
@@ -158,7 +159,220 @@ namespace Persistence
             modelBuilder.Entity<FantasyTeam>().HasOne(m => m.MidfielderFive).WithMany(p => p.MidfielderFiveFantasyTeams).HasForeignKey(t => t.MidfielderFiveID).OnDelete(DeleteBehavior.NoAction); ;
             modelBuilder.Entity<FantasyTeam>().HasOne(m => m.ForwardOne).WithMany(p => p.ForwardOneFantasyTeams).HasForeignKey(t => t.ForwardOneID).OnDelete(DeleteBehavior.NoAction); ;
             modelBuilder.Entity<FantasyTeam>().HasOne(m => m.ForwardTwo).WithMany(p => p.ForwardTwoFantasyTeams).HasForeignKey(t => t.ForwardTwoID).OnDelete(DeleteBehavior.NoAction); ;
-            modelBuilder.Entity<FantasyTeam>().HasOne(m => m.ForwardThree).WithMany(p => p.ForwardThreeFantasyTeams).HasForeignKey(t => t.ForwardThreeID).OnDelete(DeleteBehavior.NoAction); ;
+            modelBuilder.Entity<FantasyTeam>().HasOne(m => m.ForwardThree).WithMany(p => p.ForwardThreeFantasyTeams).HasForeignKey(t => t.ForwardThreeID).OnDelete(DeleteBehavior.NoAction);
+
+            // Constraints for Players not equaling others players in the team
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_GoalieOne_Unique", @"GoalieOneID <> GoalieTwoID AND 
+									                                                                       GoalieOneID <> DefenderOneID AND
+										                                                                   GoalieOneID <> DefenderTwoID AND
+										                                                                   GoalieOneID <> DefenderThreeID AND
+										                                                                   GoalieOneID <> DefenderFourID AND
+										                                                                   GoalieOneID <> DefenderFiveID AND
+										                                                                   GoalieOneID <> MidfielderOneID AND
+										                                                                   GoalieOneID <> MidfielderTwoID AND
+										                                                                   GoalieOneID <> MidfielderThreeID AND
+										                                                                   GoalieOneID <> MidfielderFourID AND
+										                                                                   GoalieOneID <> MidfielderFiveID AND
+										                                                                   GoalieOneID <> ForwardOneID AND
+										                                                                   GoalieOneID <> ForwardTwoID AND
+										                                                                   GoalieOneID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_GoalieTwo_Unique", @"GoalieTwoID <> GoalieOneID AND 
+                                                                                                           GoalieTwoID <> DefenderOneID AND
+                                                                                                           GoalieTwoID <> DefenderTwoID AND
+                                                                                                           GoalieTwoID <> DefenderThreeID AND
+                                                                                                           GoalieTwoID <> DefenderFourID AND
+                                                                                                           GoalieTwoID <> DefenderFiveID AND
+                                                                                                           GoalieTwoID <> MidfielderOneID AND
+                                                                                                           GoalieTwoID <> MidfielderTwoID AND
+                                                                                                           GoalieTwoID <> MidfielderThreeID AND
+                                                                                                           GoalieTwoID <> MidfielderFourID AND
+                                                                                                           GoalieTwoID <> MidfielderFiveID AND
+                                                                                                           GoalieTwoID <> ForwardOneID AND
+                                                                                                           GoalieTwoID <> ForwardTwoID AND
+                                                                                                           GoalieTwoID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderOne_Unique", @"DefenderOneID <> GoalieTwoID AND 
+                                                                                                             DefenderOneID <> GoallieOneID AND
+                                                                                                             DefenderOneID <> DefenderTwoID AND
+                                                                                                             DefenderOneID <> DefenderThreeID AND
+                                                                                                             DefenderOneID <> DefenderFourID AND
+                                                                                                             DefenderOneID <> DefenderFiveID AND
+                                                                                                             DefenderOneID <> MidfielderOneID AND
+                                                                                                             DefenderOneID <> MidfielderTwoID AND
+                                                                                                             DefenderOneID <> MidfielderThreeID AND
+                                                                                                             DefenderOneID <> MidfielderFourID AND
+                                                                                                             DefenderOneID <> MidfielderFiveID AND
+                                                                                                             DefenderOneID <> ForwardOneID AND
+                                                                                                             DefenderOneID <> ForwardTwoID AND
+                                                                                                             DefenderOneID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderTwo_Unique", @"DefenderTwoID <> GoalieTwoID AND 
+                                                                                                             DefenderTwoID <> DefenderOneID AND
+                                                                                                             DefenderTwoID <> GoalieOneID AND
+                                                                                                             DefenderTwoID <> DefenderThreeID AND
+                                                                                                             DefenderTwoID <> DefenderFourID AND
+                                                                                                             DefenderTwoID <> DefenderFiveID AND
+                                                                                                             DefenderTwoID <> MidfielderOneID AND
+                                                                                                             DefenderTwoID <> MidfielderTwoID AND
+                                                                                                             DefenderTwoID <> MidfielderThreeID AND
+                                                                                                             DefenderTwoID <> MidfielderFourID AND
+                                                                                                             DefenderTwoID <> MidfielderFiveID AND
+                                                                                                             DefenderTwoID <> ForwardOneID AND
+                                                                                                             DefenderTwoID <> ForwardTwoID AND
+                                                                                                             DefenderTwoID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderThree_Unique", @"DefenderThreeID <> GoalieTwoID AND 
+                                                                                                               DefenderThreeID <> DefenderOneID AND
+                                                                                                               DefenderThreeID <> DefenderTwoID AND
+                                                                                                               DefenderThreeID <> GoalieOneID AND
+                                                                                                               DefenderThreeID <> DefenderFourID AND
+                                                                                                               DefenderThreeID <> DefenderFiveID AND
+                                                                                                               DefenderThreeID <> MidfielderOneID AND
+                                                                                                               DefenderThreeID <> MidfielderTwoID AND
+                                                                                                               DefenderThreeID <> MidfielderThreeID AND
+                                                                                                               DefenderThreeID <> MidfielderFourID AND
+                                                                                                               DefenderThreeID <> MidfielderFiveID AND
+                                                                                                               DefenderThreeID <> ForwardOneID AND
+                                                                                                               DefenderThreeID <> ForwardTwoID AND
+                                                                                                               DefenderThreeID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderFour_Unique", @"DefenderFourID <> GoalieTwoID AND 
+                                                                                                              DefenderFourID <> DefenderOneID AND
+                                                                                                              DefenderFourID <> DefenderTwoID AND
+                                                                                                              DefenderFourID <> GoalieOneID AND
+                                                                                                              DefenderFourID <> DefenderThreeID AND
+                                                                                                              DefenderFourID <> DefenderFiveID AND
+                                                                                                              DefenderFourID <> MidfielderOneID AND
+                                                                                                              DefenderFourID <> MidfielderTwoID AND
+                                                                                                              DefenderFourID <> MidfielderThreeID AND
+                                                                                                              DefenderFourID <> MidfielderFourID AND
+                                                                                                              DefenderFourID <> MidfielderFiveID AND
+                                                                                                              DefenderFourID <> ForwardOneID AND
+                                                                                                              DefenderFourID <> ForwardTwoID AND
+                                                                                                              DefenderFourID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderFive_Unique", @"DefenderFiveID <> GoalieTwoID AND 
+                                                                                                              DefenderFiveID <> DefenderOneID AND
+                                                                                                              DefenderFiveID <> DefenderTwoID AND
+                                                                                                              DefenderFiveID <> DefenderThreeID AND
+                                                                                                              DefenderFiveID <> DefenderFourID AND
+                                                                                                              DefenderFiveID <> GoalieOneID AND
+                                                                                                              DefenderFiveID <> MidfielderOneID AND
+                                                                                                              DefenderFiveID <> MidfielderTwoID AND
+                                                                                                              DefenderFiveID <> MidfielderThreeID AND
+                                                                                                              DefenderFiveID <> MidfielderFourID AND
+                                                                                                              DefenderFiveID <> MidfielderFiveID AND
+                                                                                                              DefenderFiveID <> ForwardOneID AND
+                                                                                                              DefenderFiveID <> ForwardTwoID AND
+                                                                                                              DefenderFiveID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderOne_Unique", @"MidfielderOneID <> GoalieOneID AND 
+                                                                                                               MidfielderOneID <> DefenderOneID AND
+                                                                                                               MidfielderOneID <> DefenderTwoID AND
+                                                                                                               MidfielderOneID <> DefenderThreeID AND
+                                                                                                               MidfielderOneID <> DefenderFourID AND
+                                                                                                               MidfielderOneID <> DefenderFiveID AND
+                                                                                                               MidfielderOneID <> GoalieTwoID AND
+                                                                                                               MidfielderOneID <> MidfielderTwoID AND
+                                                                                                               MidfielderOneID <> MidfielderThreeID AND
+                                                                                                               MidfielderOneID <> MidfielderFourID AND
+                                                                                                               MidfielderOneID <> MidfielderFiveID AND
+                                                                                                               MidfielderOneID <> ForwardOneID AND
+                                                                                                               MidfielderOneID <> ForwardTwoID AND
+                                                                                                               MidfielderOneID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderTwo_Unique", @"MidfielderTwoID <> GoalieTwoID AND 
+                                                                                                               MidfielderTwoID <> GoallieOneID AND
+                                                                                                               MidfielderTwoID <> DefenderTwoID AND
+                                                                                                               MidfielderTwoID <> DefenderThreeID AND
+                                                                                                               MidfielderTwoID <> DefenderFourID AND
+                                                                                                               MidfielderTwoID <> DefenderFiveID AND
+                                                                                                               MidfielderTwoID <> MidfielderOneID AND
+                                                                                                               MidfielderTwoID <> DefenderOneID AND
+                                                                                                               MidfielderTwoID <> MidfielderThreeID AND
+                                                                                                               MidfielderTwoID <> MidfielderFourID AND
+                                                                                                               MidfielderTwoID <> MidfielderFiveID AND
+                                                                                                               MidfielderTwoID <> ForwardOneID AND
+                                                                                                               MidfielderTwoID <> ForwardTwoID AND
+                                                                                                               MidfielderTwoID <> ForwardThreeID)"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderThree_Unique", @"MidfielderThreeID <> GoalieOneID AND 
+                                                                                                               MidfielderThreeID <> DefenderOneID AND
+                                                                                                               MidfielderThreeID <> DefenderTwoID AND
+                                                                                                               MidfielderThreeID <> DefenderThreeID AND
+                                                                                                               MidfielderThreeID <> DefenderFourID AND
+                                                                                                               MidfielderThreeID <> DefenderFiveID AND
+                                                                                                               MidfielderThreeID <> GoalieTwoID AND
+                                                                                                               MidfielderThreeID <> MidfielderTwoID AND
+                                                                                                               MidfielderThreeID <> MidfielderOneID AND
+                                                                                                               MidfielderThreeID <> MidfielderFourID AND
+                                                                                                               MidfielderThreeID <> MidfielderFiveID AND
+                                                                                                               MidfielderThreeID <> ForwardOneID AND
+                                                                                                               MidfielderThreeID <> ForwardTwoID AND
+                                                                                                               MidfielderThreeID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderFour_Unique", @"MidfielderFourID <> GoalieTwoID AND 
+                                                                                                                MidfielderFourID <> DefenderOneID AND
+                                                                                                                MidfielderFourID <> DefenderTwoID AND
+                                                                                                                MidfielderFourID <> GoalieOneID AND
+                                                                                                                MidfielderFourID <> DefenderFourID AND
+                                                                                                                MidfielderFourID <> DefenderFiveID AND
+                                                                                                                MidfielderFourID <> MidfielderOneID AND
+                                                                                                                MidfielderFourID <> MidfielderTwoID AND
+                                                                                                                MidfielderFourID <> MidfielderThreeID AND
+                                                                                                                MidfielderFourID <> DefenderThreeID AND
+                                                                                                                MidfielderFourID <> MidfielderFiveID AND
+                                                                                                                MidfielderFourID <> ForwardOneID AND
+                                                                                                                MidfielderFourID <> ForwardTwoID AND
+                                                                                                                MidfielderFourID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderFive_Unique", @"MidfielderFiveID <> GoalieTwoID AND 
+                                                                                                                MidfielderFiveID <> DefenderOneID AND
+                                                                                                                MidfielderFiveID <> DefenderTwoID AND
+                                                                                                                MidfielderFiveID <> GoalieOneID AND
+                                                                                                                MidfielderFiveID <> DefenderFourID AND
+                                                                                                                MidfielderFiveID <> DefenderFiveID AND
+                                                                                                                MidfielderFiveID <> MidfielderOneID AND
+                                                                                                                MidfielderFiveID <> MidfielderTwoID AND
+                                                                                                                MidfielderFiveID <> MidfielderThreeID AND
+                                                                                                                MidfielderFiveID <> MidfielderFourID AND
+                                                                                                                MidfielderFiveID <> DefenderThreeID AND
+                                                                                                                MidfielderFiveID <> ForwardOneID AND
+                                                                                                                MidfielderFiveID <> ForwardTwoID AND
+                                                                                                                MidfielderFiveID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardOne_Unique", @"ForwardOneID <> GoalieTwoID AND 
+                                                                                                            ForwardOneID <> DefenderOneID AND
+                                                                                                            ForwardOneID <> DefenderTwoID AND
+                                                                                                            ForwardOneID <> DefenderThreeID AND
+                                                                                                            ForwardOneID <> DefenderFourID AND
+                                                                                                            ForwardOneID <> DefenderFiveID AND
+                                                                                                            ForwardOneID <> MidfielderOneID AND
+                                                                                                            ForwardOneID <> MidfielderTwoID AND
+                                                                                                            ForwardOneID <> MidfielderThreeID AND
+                                                                                                            ForwardOneID <> MidfielderFourID AND
+                                                                                                            ForwardOneID <> MidfielderFiveID AND
+                                                                                                            ForwardOneID <> GoalieOneID AND
+                                                                                                            ForwardOneID <> ForwardTwoID AND
+                                                                                                            ForwardOneID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardTwo_Unique", @"ForwardTwoID <> GoalieOneID AND 
+                                                                                                            ForwardTwoID <> DefenderOneID AND
+                                                                                                            ForwardTwoID <> DefenderTwoID AND
+                                                                                                            ForwardTwoID <> DefenderThreeID AND
+                                                                                                            ForwardTwoID <> DefenderFourID AND
+                                                                                                            ForwardTwoID <> DefenderFiveID AND
+                                                                                                            ForwardTwoID <> MidfielderOneID AND
+                                                                                                            ForwardTwoID <> MidfielderTwoID AND
+                                                                                                            ForwardTwoID <> MidfielderThreeID AND
+                                                                                                            ForwardTwoID <> MidfielderFourID AND
+                                                                                                            ForwardTwoID <> MidfielderFiveID AND
+                                                                                                            ForwardTwoID <> ForwardOneID AND
+                                                                                                            ForwardTwoID <> GoalieTwoID AND
+                                                                                                            ForwardTwoID <> ForwardThreeID"));
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardThree_Unique", @"ForwardThreeID <> GoalieTwoID AND 
+                                                                                                              ForwardThreeID <> GoallieOneID AND
+                                                                                                              ForwardThreeID <> DefenderTwoID AND
+                                                                                                              ForwardThreeID <> DefenderThreeID AND
+                                                                                                              ForwardThreeID <> DefenderFourID AND
+                                                                                                              ForwardThreeID <> DefenderFiveID AND
+                                                                                                              ForwardThreeID <> MidfielderOneID AND
+                                                                                                              ForwardThreeID <> MidfielderTwoID AND
+                                                                                                              ForwardThreeID <> MidfielderThreeID AND
+                                                                                                              ForwardThreeID <> MidfielderFourID AND
+                                                                                                              ForwardThreeID <> MidfielderFiveID AND
+                                                                                                              ForwardThreeID <> ForwardOneID AND
+                                                                                                              ForwardThreeID <> ForwardTwoID AND
+                                                                                                              ForwardThreeID <> DefenderOneID"));
+
             #endregion
 
             #region FantasyLeague

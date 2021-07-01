@@ -6,6 +6,7 @@ namespace Domain
     public class FantasyTeam
     {
         public Guid FantasyTeamID { get; set; }
+        public string FantasyTeamName { get; set; }
         public string FantasyTeamLogo { get; set; }
         public Guid PersonID { get; set; }
         public double MoneyBalance { get; set; }

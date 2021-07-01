@@ -1,17 +1,26 @@
-using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Domain;
+using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Persons
+namespace Application.FantasyTeams
 {
-    public class Delete
+    public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Guid PersonID { get; set; }
+            public FantasyTeam FantasyTeam { get; set; }
+        }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.FantasyTeam).SetValidator(new FantasyTeamValidator());
+            }
         }
 
         public class Handler : IRequestHandler<Command, Result<Unit>>
@@ -24,11 +33,9 @@ namespace Application.Persons
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var person = await _context.Persons.FindAsync(request.PersonID);
-                if (person == null) return null;
-                _context.Remove(person);
+                _context.FantasyTeams.Add(request.FantasyTeam);
                 var result = await _context.SaveChangesAsync() > 0;
-                if (!result) return Result<Unit>.Failure("Failed to delete account");
+                if (!result) return Result<Unit>.Failure("Failed to create Fantasy Team");
                 return Result<Unit>.Success(Unit.Value);
             }
         }
