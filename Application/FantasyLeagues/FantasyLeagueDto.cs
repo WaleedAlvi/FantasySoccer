@@ -44,8 +44,14 @@ namespace Application.FantasyLeagues
 
     public class FantasyLeagueAdminsDto
     {
-        public Guid FantasyLeagueID { get; set; }
         public PersonDto Person { get; set; }
-
     }
+
+    public class FantasyLeagueAdminDto
+    {
+        public Guid FantasyLeagueID { get; set; }
+        public Guid PersonID { get; set; }
+    }
+
+
 }

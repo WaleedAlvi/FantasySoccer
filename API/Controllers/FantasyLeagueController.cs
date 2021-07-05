@@ -14,19 +14,19 @@ namespace API.Controllers
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.Detail.Query { FantasyLeagueID = id }));
         }
 
-        [HttpGet("key/{key}")]
+        [HttpGet("Key/{key}")]
         public async Task<IActionResult> GetFantasyLeagueByKey(string key)
         {
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.DetailByKey.Query { LeagueKey = key }));
         }
 
-        [HttpGet("public")]
+        [HttpGet("Public")]
         public async Task<IActionResult> GetPersons()
         {
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.PublicLeagueList.Query()));
         }
 
-        [HttpGet("person/{id}")]
+        [HttpGet("Person/{id}")]
         public async Task<IActionResult> GetPersons(Guid id)
         {
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.PersonActiveLeagues.Query { PersonID = id }));
@@ -42,6 +42,12 @@ namespace API.Controllers
         public async Task<IActionResult> AddFantasyTeam([FromBody] FantasyLeagueTeamDto fantasyLeagueTeam)
         {
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.InsertTeam.Command { FantasyLeagueTeam = fantasyLeagueTeam }));
+        }
+
+        [HttpPost("Admin")]
+        public async Task<IActionResult> AddAdmin([FromBody] FantasyLeagueAdminDto fantasyLeagueAdmin)
+        {
+            return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.InsertLeagueAdmin.Command { FantasyLeagueAdmin = fantasyLeagueAdmin }));
         }
 
         [HttpPut("{id}")]
@@ -61,6 +67,12 @@ namespace API.Controllers
         public async Task<IActionResult> DeleteFantasyTeam([FromBody] FantasyLeagueTeamDto fantasyLeagueTeam)
         {
             return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.DeleteTeam.Command { FantasyLeagueTeam = fantasyLeagueTeam }));
+        }
+
+        [HttpDelete("Admin")]
+        public async Task<IActionResult> DeleteAdmin([FromBody] FantasyLeagueAdminDto fantasyLeagueAdmin)
+        {
+            return HandleRequest(await Mediator.Send(new Application.FantasyLeagues.DeleteLeagueAdmin.Command { FantasyLeagueAdmin = fantasyLeagueAdmin }));
         }
     }
 }

@@ -49,4 +49,13 @@ namespace Application.FantasyLeagues
             RuleFor(x => x.FantasyTeamID).NotEmpty();
         }
     }
+
+    public class FantasyLeagueInsertAdminValidator : AbstractValidator<FantasyLeagueAdminDto>
+    {
+        public FantasyLeagueInsertAdminValidator()
+        {
+            RuleFor(x => x.FantasyLeagueID).NotEmpty();
+            RuleFor(x => x.PersonID).NotEmpty();
+        }
+    }
 }

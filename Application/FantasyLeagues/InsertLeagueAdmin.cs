@@ -1,6 +1,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
+using Domain;
 using FluentValidation;
 using MediatR;
 using Persistence;
@@ -11,7 +12,39 @@ namespace Application.FantasyLeagues
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public FantasyLeagueTeamDto FantasyLeagueTeam { get; set; }
+            public FantasyLeagueAdminDto FantasyLeagueAdmin { get; set; }
+        }
+
+        public class CommandValidator : AbstractValidator<Command>
+        {
+            public CommandValidator()
+            {
+                RuleFor(x => x.FantasyLeagueAdmin).SetValidator(new FantasyLeagueInsertAdminValidator());
+            }
+        }
+
+        public class Handler : IRequestHandler<Command, Result<Unit>>
+        {
+            private readonly DataContext _context;
+            public Handler(DataContext context)
+            {
+                _context = context;
+            }
+
+            public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
+            {
+                var newFantasyLeagueAdmin = new FantasyLeagueAdmin
+                {
+                    FantasyLeagueID = request.FantasyLeagueAdmin.FantasyLeagueID,
+                    PersonID = request.FantasyLeagueAdmin.PersonID,
+                };
+
+                _context.FantasyLeaguesAdmins.Add(newFantasyLeagueAdmin);
+
+                var result = await _context.SaveChangesAsync() > 0;
+                if (!result) return Result<Unit>.Failure("Failed to add admin to league");
+                return Result<Unit>.Success(Unit.Value);
+            }
         }
     }
 }
