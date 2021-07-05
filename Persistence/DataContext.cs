@@ -176,6 +176,7 @@ namespace Persistence
 										                                                                   GoalieOneID <> ForwardOneID AND
 										                                                                   GoalieOneID <> ForwardTwoID AND
 										                                                                   GoalieOneID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_GoalieTwo_Unique", @"GoalieTwoID <> GoalieOneID AND 
                                                                                                            GoalieTwoID <> DefenderOneID AND
                                                                                                            GoalieTwoID <> DefenderTwoID AND
@@ -190,8 +191,9 @@ namespace Persistence
                                                                                                            GoalieTwoID <> ForwardOneID AND
                                                                                                            GoalieTwoID <> ForwardTwoID AND
                                                                                                            GoalieTwoID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderOne_Unique", @"DefenderOneID <> GoalieTwoID AND 
-                                                                                                             DefenderOneID <> GoallieOneID AND
+                                                                                                             DefenderOneID <> GoalieOneID AND
                                                                                                              DefenderOneID <> DefenderTwoID AND
                                                                                                              DefenderOneID <> DefenderThreeID AND
                                                                                                              DefenderOneID <> DefenderFourID AND
@@ -204,6 +206,7 @@ namespace Persistence
                                                                                                              DefenderOneID <> ForwardOneID AND
                                                                                                              DefenderOneID <> ForwardTwoID AND
                                                                                                              DefenderOneID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderTwo_Unique", @"DefenderTwoID <> GoalieTwoID AND 
                                                                                                              DefenderTwoID <> DefenderOneID AND
                                                                                                              DefenderTwoID <> GoalieOneID AND
@@ -218,6 +221,7 @@ namespace Persistence
                                                                                                              DefenderTwoID <> ForwardOneID AND
                                                                                                              DefenderTwoID <> ForwardTwoID AND
                                                                                                              DefenderTwoID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderThree_Unique", @"DefenderThreeID <> GoalieTwoID AND 
                                                                                                                DefenderThreeID <> DefenderOneID AND
                                                                                                                DefenderThreeID <> DefenderTwoID AND
@@ -232,6 +236,7 @@ namespace Persistence
                                                                                                                DefenderThreeID <> ForwardOneID AND
                                                                                                                DefenderThreeID <> ForwardTwoID AND
                                                                                                                DefenderThreeID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderFour_Unique", @"DefenderFourID <> GoalieTwoID AND 
                                                                                                               DefenderFourID <> DefenderOneID AND
                                                                                                               DefenderFourID <> DefenderTwoID AND
@@ -246,6 +251,7 @@ namespace Persistence
                                                                                                               DefenderFourID <> ForwardOneID AND
                                                                                                               DefenderFourID <> ForwardTwoID AND
                                                                                                               DefenderFourID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_DefenderFive_Unique", @"DefenderFiveID <> GoalieTwoID AND 
                                                                                                               DefenderFiveID <> DefenderOneID AND
                                                                                                               DefenderFiveID <> DefenderTwoID AND
@@ -260,6 +266,7 @@ namespace Persistence
                                                                                                               DefenderFiveID <> ForwardOneID AND
                                                                                                               DefenderFiveID <> ForwardTwoID AND
                                                                                                               DefenderFiveID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderOne_Unique", @"MidfielderOneID <> GoalieOneID AND 
                                                                                                                MidfielderOneID <> DefenderOneID AND
                                                                                                                MidfielderOneID <> DefenderTwoID AND
@@ -274,8 +281,9 @@ namespace Persistence
                                                                                                                MidfielderOneID <> ForwardOneID AND
                                                                                                                MidfielderOneID <> ForwardTwoID AND
                                                                                                                MidfielderOneID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderTwo_Unique", @"MidfielderTwoID <> GoalieTwoID AND 
-                                                                                                               MidfielderTwoID <> GoallieOneID AND
+                                                                                                               MidfielderTwoID <> GoalieOneID AND
                                                                                                                MidfielderTwoID <> DefenderTwoID AND
                                                                                                                MidfielderTwoID <> DefenderThreeID AND
                                                                                                                MidfielderTwoID <> DefenderFourID AND
@@ -287,21 +295,23 @@ namespace Persistence
                                                                                                                MidfielderTwoID <> MidfielderFiveID AND
                                                                                                                MidfielderTwoID <> ForwardOneID AND
                                                                                                                MidfielderTwoID <> ForwardTwoID AND
-                                                                                                               MidfielderTwoID <> ForwardThreeID)"));
+                                                                                                               MidfielderTwoID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderThree_Unique", @"MidfielderThreeID <> GoalieOneID AND 
-                                                                                                               MidfielderThreeID <> DefenderOneID AND
-                                                                                                               MidfielderThreeID <> DefenderTwoID AND
-                                                                                                               MidfielderThreeID <> DefenderThreeID AND
-                                                                                                               MidfielderThreeID <> DefenderFourID AND
-                                                                                                               MidfielderThreeID <> DefenderFiveID AND
-                                                                                                               MidfielderThreeID <> GoalieTwoID AND
-                                                                                                               MidfielderThreeID <> MidfielderTwoID AND
-                                                                                                               MidfielderThreeID <> MidfielderOneID AND
-                                                                                                               MidfielderThreeID <> MidfielderFourID AND
-                                                                                                               MidfielderThreeID <> MidfielderFiveID AND
-                                                                                                               MidfielderThreeID <> ForwardOneID AND
-                                                                                                               MidfielderThreeID <> ForwardTwoID AND
-                                                                                                               MidfielderThreeID <> ForwardThreeID"));
+                                                                                                                 MidfielderThreeID <> DefenderOneID AND
+                                                                                                                 MidfielderThreeID <> DefenderTwoID AND
+                                                                                                                 MidfielderThreeID <> DefenderThreeID AND
+                                                                                                                 MidfielderThreeID <> DefenderFourID AND
+                                                                                                                 MidfielderThreeID <> DefenderFiveID AND
+                                                                                                                 MidfielderThreeID <> GoalieTwoID AND
+                                                                                                                 MidfielderThreeID <> MidfielderTwoID AND
+                                                                                                                 MidfielderThreeID <> MidfielderOneID AND
+                                                                                                                 MidfielderThreeID <> MidfielderFourID AND
+                                                                                                                 MidfielderThreeID <> MidfielderFiveID AND
+                                                                                                                 MidfielderThreeID <> ForwardOneID AND
+                                                                                                                 MidfielderThreeID <> ForwardTwoID AND
+                                                                                                                 MidfielderThreeID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderFour_Unique", @"MidfielderFourID <> GoalieTwoID AND 
                                                                                                                 MidfielderFourID <> DefenderOneID AND
                                                                                                                 MidfielderFourID <> DefenderTwoID AND
@@ -316,20 +326,22 @@ namespace Persistence
                                                                                                                 MidfielderFourID <> ForwardOneID AND
                                                                                                                 MidfielderFourID <> ForwardTwoID AND
                                                                                                                 MidfielderFourID <> ForwardThreeID"));
-            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderFive_Unique", @"MidfielderFiveID <> GoalieTwoID AND 
+
+            modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_MidfielderFive_Unique", @"MidfielderFiveID <> GoalieOneID AND 
+                                                                                                                MidfielderFiveID <> GoalieTwoID AND
                                                                                                                 MidfielderFiveID <> DefenderOneID AND
                                                                                                                 MidfielderFiveID <> DefenderTwoID AND
-                                                                                                                MidfielderFiveID <> GoalieOneID AND
+                                                                                                                MidfielderFiveID <> DefenderThreeID AND
                                                                                                                 MidfielderFiveID <> DefenderFourID AND
                                                                                                                 MidfielderFiveID <> DefenderFiveID AND
                                                                                                                 MidfielderFiveID <> MidfielderOneID AND
                                                                                                                 MidfielderFiveID <> MidfielderTwoID AND
                                                                                                                 MidfielderFiveID <> MidfielderThreeID AND
                                                                                                                 MidfielderFiveID <> MidfielderFourID AND
-                                                                                                                MidfielderFiveID <> DefenderThreeID AND
                                                                                                                 MidfielderFiveID <> ForwardOneID AND
                                                                                                                 MidfielderFiveID <> ForwardTwoID AND
                                                                                                                 MidfielderFiveID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardOne_Unique", @"ForwardOneID <> GoalieTwoID AND 
                                                                                                             ForwardOneID <> DefenderOneID AND
                                                                                                             ForwardOneID <> DefenderTwoID AND
@@ -344,6 +356,7 @@ namespace Persistence
                                                                                                             ForwardOneID <> GoalieOneID AND
                                                                                                             ForwardOneID <> ForwardTwoID AND
                                                                                                             ForwardOneID <> ForwardThreeID"));
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardTwo_Unique", @"ForwardTwoID <> GoalieOneID AND 
                                                                                                             ForwardTwoID <> DefenderOneID AND
                                                                                                             ForwardTwoID <> DefenderTwoID AND
@@ -358,8 +371,10 @@ namespace Persistence
                                                                                                             ForwardTwoID <> ForwardOneID AND
                                                                                                             ForwardTwoID <> GoalieTwoID AND
                                                                                                             ForwardTwoID <> ForwardThreeID"));
+                                                                                                            
+
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardThree_Unique", @"ForwardThreeID <> GoalieTwoID AND 
-                                                                                                              ForwardThreeID <> GoallieOneID AND
+                                                                                                              ForwardThreeID <> GoalieOneID AND
                                                                                                               ForwardThreeID <> DefenderTwoID AND
                                                                                                               ForwardThreeID <> DefenderThreeID AND
                                                                                                               ForwardThreeID <> DefenderFourID AND
@@ -383,6 +398,7 @@ namespace Persistence
             modelBuilder.Entity<FantasyLeague>().Property(p => p.NumberOfTeams).IsRequired().HasDefaultValue(10);
             modelBuilder.Entity<FantasyLeague>().Property(p => p.DateCreated).IsRequired();
             modelBuilder.Entity<FantasyLeague>().Property(p => p.DateUpdated).IsRequired();
+            modelBuilder.Entity<FantasyLeague>().HasIndex(p => p.LeagueKey).IsUnique();
             #endregion
 
             #region FantasyLeagueAdmin

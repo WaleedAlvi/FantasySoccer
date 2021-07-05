@@ -50,6 +50,7 @@ namespace API
             services.AddMediatR(typeof(Application.Teams.List.Handler).Assembly);
             services.AddMediatR(typeof(Application.Players.List.Handler).Assembly);
             services.AddMediatR(typeof(Application.FantasyTeams.Create.Handler).Assembly);
+            services.AddMediatR(typeof(Application.FantasyLeagues.Create.Handler).Assembly);
             services.AddAutoMapper(typeof(MappingProfiles).Assembly);
         }
 

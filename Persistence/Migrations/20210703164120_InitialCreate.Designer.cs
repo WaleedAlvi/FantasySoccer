@@ -10,8 +10,8 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210613005237_Inital Create")]
-    partial class InitalCreate
+    [Migration("20210703164120_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -55,6 +55,12 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool?>("IsPublic")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bit")
@@ -64,7 +70,7 @@ namespace Persistence.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LeagueKey")
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LeagueLogo")
                         .ValueGeneratedOnAdd()
@@ -81,6 +87,10 @@ namespace Persistence.Migrations
                         .HasDefaultValue(10);
 
                     b.HasKey("FantasyLeagueID");
+
+                    b.HasIndex("LeagueKey")
+                        .IsUnique()
+                        .HasFilter("[LeagueKey] IS NOT NULL");
 
                     b.ToTable("FantasyLeagues");
                 });
@@ -146,6 +156,10 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("nvarchar(max)")
                         .HasDefaultValue("Hello World, This  is an image");
+
+                    b.Property<string>("FantasyTeamName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ForwardOneID")
                         .HasColumnType("uniqueidentifier");
@@ -228,6 +242,36 @@ namespace Persistence.Migrations
                     b.HasIndex("PlayerID1");
 
                     b.ToTable("FantasyTeams");
+
+                    b.HasCheckConstraint("CHK_GoalieOne_Unique", "GoalieOneID <> GoalieTwoID AND \r\n									                                                                       GoalieOneID <> DefenderOneID AND\r\n										                                                                   GoalieOneID <> DefenderTwoID AND\r\n										                                                                   GoalieOneID <> DefenderThreeID AND\r\n										                                                                   GoalieOneID <> DefenderFourID AND\r\n										                                                                   GoalieOneID <> DefenderFiveID AND\r\n										                                                                   GoalieOneID <> MidfielderOneID AND\r\n										                                                                   GoalieOneID <> MidfielderTwoID AND\r\n										                                                                   GoalieOneID <> MidfielderThreeID AND\r\n										                                                                   GoalieOneID <> MidfielderFourID AND\r\n										                                                                   GoalieOneID <> MidfielderFiveID AND\r\n										                                                                   GoalieOneID <> ForwardOneID AND\r\n										                                                                   GoalieOneID <> ForwardTwoID AND\r\n										                                                                   GoalieOneID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_GoalieTwo_Unique", "GoalieTwoID <> GoalieOneID AND \r\n                                                                                                           GoalieTwoID <> DefenderOneID AND\r\n                                                                                                           GoalieTwoID <> DefenderTwoID AND\r\n                                                                                                           GoalieTwoID <> DefenderThreeID AND\r\n                                                                                                           GoalieTwoID <> DefenderFourID AND\r\n                                                                                                           GoalieTwoID <> DefenderFiveID AND\r\n                                                                                                           GoalieTwoID <> MidfielderOneID AND\r\n                                                                                                           GoalieTwoID <> MidfielderTwoID AND\r\n                                                                                                           GoalieTwoID <> MidfielderThreeID AND\r\n                                                                                                           GoalieTwoID <> MidfielderFourID AND\r\n                                                                                                           GoalieTwoID <> MidfielderFiveID AND\r\n                                                                                                           GoalieTwoID <> ForwardOneID AND\r\n                                                                                                           GoalieTwoID <> ForwardTwoID AND\r\n                                                                                                           GoalieTwoID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_DefenderOne_Unique", "DefenderOneID <> GoalieTwoID AND \r\n                                                                                                             DefenderOneID <> GoalieOneID AND\r\n                                                                                                             DefenderOneID <> DefenderTwoID AND\r\n                                                                                                             DefenderOneID <> DefenderThreeID AND\r\n                                                                                                             DefenderOneID <> DefenderFourID AND\r\n                                                                                                             DefenderOneID <> DefenderFiveID AND\r\n                                                                                                             DefenderOneID <> MidfielderOneID AND\r\n                                                                                                             DefenderOneID <> MidfielderTwoID AND\r\n                                                                                                             DefenderOneID <> MidfielderThreeID AND\r\n                                                                                                             DefenderOneID <> MidfielderFourID AND\r\n                                                                                                             DefenderOneID <> MidfielderFiveID AND\r\n                                                                                                             DefenderOneID <> ForwardOneID AND\r\n                                                                                                             DefenderOneID <> ForwardTwoID AND\r\n                                                                                                             DefenderOneID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_DefenderTwo_Unique", "DefenderTwoID <> GoalieTwoID AND \r\n                                                                                                             DefenderTwoID <> DefenderOneID AND\r\n                                                                                                             DefenderTwoID <> GoalieOneID AND\r\n                                                                                                             DefenderTwoID <> DefenderThreeID AND\r\n                                                                                                             DefenderTwoID <> DefenderFourID AND\r\n                                                                                                             DefenderTwoID <> DefenderFiveID AND\r\n                                                                                                             DefenderTwoID <> MidfielderOneID AND\r\n                                                                                                             DefenderTwoID <> MidfielderTwoID AND\r\n                                                                                                             DefenderTwoID <> MidfielderThreeID AND\r\n                                                                                                             DefenderTwoID <> MidfielderFourID AND\r\n                                                                                                             DefenderTwoID <> MidfielderFiveID AND\r\n                                                                                                             DefenderTwoID <> ForwardOneID AND\r\n                                                                                                             DefenderTwoID <> ForwardTwoID AND\r\n                                                                                                             DefenderTwoID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_DefenderThree_Unique", "DefenderThreeID <> GoalieTwoID AND \r\n                                                                                                               DefenderThreeID <> DefenderOneID AND\r\n                                                                                                               DefenderThreeID <> DefenderTwoID AND\r\n                                                                                                               DefenderThreeID <> GoalieOneID AND\r\n                                                                                                               DefenderThreeID <> DefenderFourID AND\r\n                                                                                                               DefenderThreeID <> DefenderFiveID AND\r\n                                                                                                               DefenderThreeID <> MidfielderOneID AND\r\n                                                                                                               DefenderThreeID <> MidfielderTwoID AND\r\n                                                                                                               DefenderThreeID <> MidfielderThreeID AND\r\n                                                                                                               DefenderThreeID <> MidfielderFourID AND\r\n                                                                                                               DefenderThreeID <> MidfielderFiveID AND\r\n                                                                                                               DefenderThreeID <> ForwardOneID AND\r\n                                                                                                               DefenderThreeID <> ForwardTwoID AND\r\n                                                                                                               DefenderThreeID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_DefenderFour_Unique", "DefenderFourID <> GoalieTwoID AND \r\n                                                                                                              DefenderFourID <> DefenderOneID AND\r\n                                                                                                              DefenderFourID <> DefenderTwoID AND\r\n                                                                                                              DefenderFourID <> GoalieOneID AND\r\n                                                                                                              DefenderFourID <> DefenderThreeID AND\r\n                                                                                                              DefenderFourID <> DefenderFiveID AND\r\n                                                                                                              DefenderFourID <> MidfielderOneID AND\r\n                                                                                                              DefenderFourID <> MidfielderTwoID AND\r\n                                                                                                              DefenderFourID <> MidfielderThreeID AND\r\n                                                                                                              DefenderFourID <> MidfielderFourID AND\r\n                                                                                                              DefenderFourID <> MidfielderFiveID AND\r\n                                                                                                              DefenderFourID <> ForwardOneID AND\r\n                                                                                                              DefenderFourID <> ForwardTwoID AND\r\n                                                                                                              DefenderFourID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_DefenderFive_Unique", "DefenderFiveID <> GoalieTwoID AND \r\n                                                                                                              DefenderFiveID <> DefenderOneID AND\r\n                                                                                                              DefenderFiveID <> DefenderTwoID AND\r\n                                                                                                              DefenderFiveID <> DefenderThreeID AND\r\n                                                                                                              DefenderFiveID <> DefenderFourID AND\r\n                                                                                                              DefenderFiveID <> GoalieOneID AND\r\n                                                                                                              DefenderFiveID <> MidfielderOneID AND\r\n                                                                                                              DefenderFiveID <> MidfielderTwoID AND\r\n                                                                                                              DefenderFiveID <> MidfielderThreeID AND\r\n                                                                                                              DefenderFiveID <> MidfielderFourID AND\r\n                                                                                                              DefenderFiveID <> MidfielderFiveID AND\r\n                                                                                                              DefenderFiveID <> ForwardOneID AND\r\n                                                                                                              DefenderFiveID <> ForwardTwoID AND\r\n                                                                                                              DefenderFiveID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_MidfielderOne_Unique", "MidfielderOneID <> GoalieOneID AND \r\n                                                                                                               MidfielderOneID <> DefenderOneID AND\r\n                                                                                                               MidfielderOneID <> DefenderTwoID AND\r\n                                                                                                               MidfielderOneID <> DefenderThreeID AND\r\n                                                                                                               MidfielderOneID <> DefenderFourID AND\r\n                                                                                                               MidfielderOneID <> DefenderFiveID AND\r\n                                                                                                               MidfielderOneID <> GoalieTwoID AND\r\n                                                                                                               MidfielderOneID <> MidfielderTwoID AND\r\n                                                                                                               MidfielderOneID <> MidfielderThreeID AND\r\n                                                                                                               MidfielderOneID <> MidfielderFourID AND\r\n                                                                                                               MidfielderOneID <> MidfielderFiveID AND\r\n                                                                                                               MidfielderOneID <> ForwardOneID AND\r\n                                                                                                               MidfielderOneID <> ForwardTwoID AND\r\n                                                                                                               MidfielderOneID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_MidfielderTwo_Unique", "MidfielderTwoID <> GoalieTwoID AND \r\n                                                                                                               MidfielderTwoID <> GoalieOneID AND\r\n                                                                                                               MidfielderTwoID <> DefenderTwoID AND\r\n                                                                                                               MidfielderTwoID <> DefenderThreeID AND\r\n                                                                                                               MidfielderTwoID <> DefenderFourID AND\r\n                                                                                                               MidfielderTwoID <> DefenderFiveID AND\r\n                                                                                                               MidfielderTwoID <> MidfielderOneID AND\r\n                                                                                                               MidfielderTwoID <> DefenderOneID AND\r\n                                                                                                               MidfielderTwoID <> MidfielderThreeID AND\r\n                                                                                                               MidfielderTwoID <> MidfielderFourID AND\r\n                                                                                                               MidfielderTwoID <> MidfielderFiveID AND\r\n                                                                                                               MidfielderTwoID <> ForwardOneID AND\r\n                                                                                                               MidfielderTwoID <> ForwardTwoID AND\r\n                                                                                                               MidfielderTwoID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_MidfielderThree_Unique", "MidfielderThreeID <> GoalieOneID AND \r\n                                                                                                                 MidfielderThreeID <> DefenderOneID AND\r\n                                                                                                                 MidfielderThreeID <> DefenderTwoID AND\r\n                                                                                                                 MidfielderThreeID <> DefenderThreeID AND\r\n                                                                                                                 MidfielderThreeID <> DefenderFourID AND\r\n                                                                                                                 MidfielderThreeID <> DefenderFiveID AND\r\n                                                                                                                 MidfielderThreeID <> GoalieTwoID AND\r\n                                                                                                                 MidfielderThreeID <> MidfielderTwoID AND\r\n                                                                                                                 MidfielderThreeID <> MidfielderOneID AND\r\n                                                                                                                 MidfielderThreeID <> MidfielderFourID AND\r\n                                                                                                                 MidfielderThreeID <> MidfielderFiveID AND\r\n                                                                                                                 MidfielderThreeID <> ForwardOneID AND\r\n                                                                                                                 MidfielderThreeID <> ForwardTwoID AND\r\n                                                                                                                 MidfielderThreeID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_MidfielderFour_Unique", "MidfielderFourID <> GoalieTwoID AND \r\n                                                                                                                MidfielderFourID <> DefenderOneID AND\r\n                                                                                                                MidfielderFourID <> DefenderTwoID AND\r\n                                                                                                                MidfielderFourID <> GoalieOneID AND\r\n                                                                                                                MidfielderFourID <> DefenderFourID AND\r\n                                                                                                                MidfielderFourID <> DefenderFiveID AND\r\n                                                                                                                MidfielderFourID <> MidfielderOneID AND\r\n                                                                                                                MidfielderFourID <> MidfielderTwoID AND\r\n                                                                                                                MidfielderFourID <> MidfielderThreeID AND\r\n                                                                                                                MidfielderFourID <> DefenderThreeID AND\r\n                                                                                                                MidfielderFourID <> MidfielderFiveID AND\r\n                                                                                                                MidfielderFourID <> ForwardOneID AND\r\n                                                                                                                MidfielderFourID <> ForwardTwoID AND\r\n                                                                                                                MidfielderFourID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_MidfielderFive_Unique", "MidfielderFiveID <> GoalieOneID AND \r\n                                                                                                                MidfielderFiveID <> GoalieTwoID AND\r\n                                                                                                                MidfielderFiveID <> DefenderOneID AND\r\n                                                                                                                MidfielderFiveID <> DefenderTwoID AND\r\n                                                                                                                MidfielderFiveID <> DefenderThreeID AND\r\n                                                                                                                MidfielderFiveID <> DefenderFourID AND\r\n                                                                                                                MidfielderFiveID <> DefenderFiveID AND\r\n                                                                                                                MidfielderFiveID <> MidfielderOneID AND\r\n                                                                                                                MidfielderFiveID <> MidfielderTwoID AND\r\n                                                                                                                MidfielderFiveID <> MidfielderThreeID AND\r\n                                                                                                                MidfielderFiveID <> MidfielderFourID AND\r\n                                                                                                                MidfielderFiveID <> ForwardOneID AND\r\n                                                                                                                MidfielderFiveID <> ForwardTwoID AND\r\n                                                                                                                MidfielderFiveID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_ForwardOne_Unique", "ForwardOneID <> GoalieTwoID AND \r\n                                                                                                            ForwardOneID <> DefenderOneID AND\r\n                                                                                                            ForwardOneID <> DefenderTwoID AND\r\n                                                                                                            ForwardOneID <> DefenderThreeID AND\r\n                                                                                                            ForwardOneID <> DefenderFourID AND\r\n                                                                                                            ForwardOneID <> DefenderFiveID AND\r\n                                                                                                            ForwardOneID <> MidfielderOneID AND\r\n                                                                                                            ForwardOneID <> MidfielderTwoID AND\r\n                                                                                                            ForwardOneID <> MidfielderThreeID AND\r\n                                                                                                            ForwardOneID <> MidfielderFourID AND\r\n                                                                                                            ForwardOneID <> MidfielderFiveID AND\r\n                                                                                                            ForwardOneID <> GoalieOneID AND\r\n                                                                                                            ForwardOneID <> ForwardTwoID AND\r\n                                                                                                            ForwardOneID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_ForwardTwo_Unique", "ForwardTwoID <> GoalieOneID AND \r\n                                                                                                            ForwardTwoID <> DefenderOneID AND\r\n                                                                                                            ForwardTwoID <> DefenderTwoID AND\r\n                                                                                                            ForwardTwoID <> DefenderThreeID AND\r\n                                                                                                            ForwardTwoID <> DefenderFourID AND\r\n                                                                                                            ForwardTwoID <> DefenderFiveID AND\r\n                                                                                                            ForwardTwoID <> MidfielderOneID AND\r\n                                                                                                            ForwardTwoID <> MidfielderTwoID AND\r\n                                                                                                            ForwardTwoID <> MidfielderThreeID AND\r\n                                                                                                            ForwardTwoID <> MidfielderFourID AND\r\n                                                                                                            ForwardTwoID <> MidfielderFiveID AND\r\n                                                                                                            ForwardTwoID <> ForwardOneID AND\r\n                                                                                                            ForwardTwoID <> GoalieTwoID AND\r\n                                                                                                            ForwardTwoID <> ForwardThreeID");
+
+                    b.HasCheckConstraint("CHK_ForwardThree_Unique", "ForwardThreeID <> GoalieTwoID AND \r\n                                                                                                              ForwardThreeID <> GoalieOneID AND\r\n                                                                                                              ForwardThreeID <> DefenderTwoID AND\r\n                                                                                                              ForwardThreeID <> DefenderThreeID AND\r\n                                                                                                              ForwardThreeID <> DefenderFourID AND\r\n                                                                                                              ForwardThreeID <> DefenderFiveID AND\r\n                                                                                                              ForwardThreeID <> MidfielderOneID AND\r\n                                                                                                              ForwardThreeID <> MidfielderTwoID AND\r\n                                                                                                              ForwardThreeID <> MidfielderThreeID AND\r\n                                                                                                              ForwardThreeID <> MidfielderFourID AND\r\n                                                                                                              ForwardThreeID <> MidfielderFiveID AND\r\n                                                                                                              ForwardThreeID <> ForwardOneID AND\r\n                                                                                                              ForwardThreeID <> ForwardTwoID AND\r\n                                                                                                              ForwardThreeID <> DefenderOneID");
                 });
 
             modelBuilder.Entity("Domain.Formation", b =>
@@ -235,6 +279,12 @@ namespace Persistence.Migrations
                     b.Property<Guid>("FormationID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("DefenderCount")
                         .HasColumnType("int");
@@ -282,8 +332,7 @@ namespace Persistence.Migrations
 
                     b.HasKey("LeagueID");
 
-                    b.HasIndex("CountryID")
-                        .IsUnique();
+                    b.HasIndex("CountryID");
 
                     b.ToTable("Leagues");
                 });
@@ -293,6 +342,12 @@ namespace Persistence.Migrations
                     b.Property<Guid>("MatchdayID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("EndDate")
                         .HasColumnType("datetime2");
@@ -330,6 +385,12 @@ namespace Persistence.Migrations
 
                     b.Property<Guid>("BenchTwoID")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("GoalieID")
                         .HasColumnType("uniqueidentifier");
@@ -412,6 +473,12 @@ namespace Persistence.Migrations
                     b.Property<Guid>("CaptainID")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DateUpdated")
+                        .HasColumnType("datetime2");
+
                     b.Property<Guid>("FantasyTeamID")
                         .HasColumnType("uniqueidentifier");
 
@@ -471,11 +538,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("PersonID");
 
-                    b.HasIndex("CountryID")
-                        .IsUnique();
+                    b.HasIndex("CountryID");
 
-                    b.HasIndex("TeamID")
-                        .IsUnique();
+                    b.HasIndex("TeamID");
 
                     b.ToTable("Persons");
                 });
@@ -534,11 +599,9 @@ namespace Persistence.Migrations
 
                     b.HasKey("PlayerID");
 
-                    b.HasIndex("CountryID")
-                        .IsUnique();
+                    b.HasIndex("CountryID");
 
-                    b.HasIndex("TeamID")
-                        .IsUnique();
+                    b.HasIndex("TeamID");
 
                     b.ToTable("Players");
                 });
@@ -589,8 +652,10 @@ namespace Persistence.Migrations
                     b.Property<DateTime>("DateUpdated")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("FirebaseID")
-                        .HasColumnType("int");
+                    b.Property<string>("FirebaseID")
+                        .IsRequired()
+                        .HasMaxLength(28)
+                        .HasColumnType("nvarchar(28)");
 
                     b.Property<Guid>("PersonID")
                         .HasColumnType("uniqueidentifier");
@@ -783,8 +848,8 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.League", b =>
                 {
                     b.HasOne("Domain.Country", "Country")
-                        .WithOne("League")
-                        .HasForeignKey("Domain.League", "CountryID")
+                        .WithMany("League")
+                        .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -961,14 +1026,14 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Person", b =>
                 {
                     b.HasOne("Domain.Country", "Country")
-                        .WithOne("Person")
-                        .HasForeignKey("Domain.Person", "CountryID")
+                        .WithMany("Person")
+                        .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Team", "Team")
-                        .WithOne("Person")
-                        .HasForeignKey("Domain.Person", "TeamID")
+                        .WithMany("Person")
+                        .HasForeignKey("TeamID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -980,14 +1045,14 @@ namespace Persistence.Migrations
             modelBuilder.Entity("Domain.Player", b =>
                 {
                     b.HasOne("Domain.Country", "Country")
-                        .WithOne("Player")
-                        .HasForeignKey("Domain.Player", "CountryID")
+                        .WithMany("Player")
+                        .HasForeignKey("CountryID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 
                     b.HasOne("Domain.Team", "Team")
-                        .WithOne("Player")
-                        .HasForeignKey("Domain.Player", "TeamID")
+                        .WithMany("Player")
+                        .HasForeignKey("TeamID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
 

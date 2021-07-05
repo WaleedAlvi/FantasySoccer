@@ -82,11 +82,14 @@ namespace Persistence
                     new User
                     {
                         PersonID = context.Persons.Single(c => c.FirstName == "Waleed").PersonID,
+                        FirebaseID = "cyR4PGb8trXFcVTus5Z2u2bpdBr2",
                         DateCreated = DateTime.Now,
                         DateUpdated = DateTime.Now,
-
                     }
                 };
+
+                await context.Users.AddRangeAsync(user);
+                await context.SaveChangesAsync();
             }
 
             if (!context.Players.Any())
@@ -345,6 +348,40 @@ namespace Persistence
                         Weight = 81,
                         Injured = false,
                         Value = 8,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Player
+                    {
+                        APIFootballID = 114,
+                        FirstName = "Adrien Sebastian",
+                        LastName = "Perruchet Silva",
+                        PreferredName = "Adrien Silva",
+                        DateOfBirth = new DateTime(1989, 03, 15),
+                        CountryID = context.Countries.Single(c => c.CountryName == "Italy").CountryID,
+                        TeamID = context.Teams.Single(c => c.TeamName == "AC Milan").TeamID,
+                        Position = "Midfielder",
+                        Height = 175,
+                        Weight = 69,
+                        Injured = false,
+                        Value = 6.2,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Player
+                    {
+                        APIFootballID = 114,
+                        FirstName = "Jarrod",
+                        LastName = "Bowen",
+                        PreferredName = "J. Bowen",
+                        DateOfBirth = new DateTime(1996, 12, 20),
+                        CountryID = context.Countries.Single(c => c.CountryName == "Italy").CountryID,
+                        TeamID = context.Teams.Single(c => c.TeamName == "AC Milan").TeamID,
+                        Position = "Attacker",
+                        Height = 175,
+                        Weight = 69,
+                        Injured = false,
+                        Value = 3.8,
                         DateCreated = DateTime.Now,
                         DateUpdated = DateTime.Now,
                     },
