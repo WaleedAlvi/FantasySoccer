@@ -31,4 +31,14 @@ namespace Application.Persons
             // RuleFor(x => x.DateUpdated).eq();
         }
     }
+
+    public class UserValidator : AbstractValidator<User>
+    {
+        public UserValidator()
+        {
+            RuleFor(x => x.FirebaseID).NotEmpty().Length(28);
+            RuleFor(x => x.PersonID).NotEmpty();
+        }
+    }
+
 }
