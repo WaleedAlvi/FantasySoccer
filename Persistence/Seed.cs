@@ -391,6 +391,79 @@ namespace Persistence
                 await context.Players.AddRangeAsync(players);
                 await context.SaveChangesAsync();
             }
+
+            if (!context.Formations.Any())
+            {
+                var formations = new List<Formation>
+                {
+                    new Formation
+                    {
+                        FormationName = "4-3-3",
+                        DefenderCount = 4,
+                        MidfielderCount = 3,
+                        ForwardCount = 3,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "4-4-2",
+                        DefenderCount = 4,
+                        MidfielderCount = 4,
+                        ForwardCount = 2,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "5-3-2",
+                        DefenderCount = 5,
+                        MidfielderCount = 3,
+                        ForwardCount = 2,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "3-4-3",
+                        DefenderCount = 3,
+                        MidfielderCount = 4,
+                        ForwardCount = 3,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "3–5–2",
+                        DefenderCount = 3,
+                        MidfielderCount = 5,
+                        ForwardCount = 2,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "4–5–1",
+                        DefenderCount = 4,
+                        MidfielderCount = 5,
+                        ForwardCount = 1,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                    new Formation
+                    {
+                        FormationName = "5–4–1",
+                        DefenderCount = 5,
+                        MidfielderCount = 4,
+                        ForwardCount = 1,
+                        DateCreated = DateTime.Now,
+                        DateUpdated = DateTime.Now,
+                    },
+                };
+
+                await context.Formations.AddRangeAsync(formations);
+                await context.SaveChangesAsync();
+            }
         }
     }
 }
