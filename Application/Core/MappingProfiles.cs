@@ -5,6 +5,7 @@ using Application.Persons;
 using Application.Players;
 using Application.FantasyLeagues;
 using Application.Teams;
+using Application.Matchdays;
 using AutoMapper;
 using Domain;
 
@@ -16,17 +17,30 @@ namespace Application.Core
         {
             CreateMap<Person, Person>();
             CreateMap<Person, PersonDto>().ForMember(d => d.FavouriteTeam, o => o.MapFrom(s => s.Team));
+
             CreateMap<Country, CountryDto>();
+
             CreateMap<Team, TeamDto>();
+
             CreateMap<League, LeagueDto>();
+
             CreateMap<User, UserDto>();
+
             CreateMap<Player, PlayerDto>();
+
             CreateMap<FantasyTeam, FantasyTeam>();
             CreateMap<FantasyTeam, FantasyTeamDto>();
+
             CreateMap<FantasyLeague, FantasyLeague>();
             CreateMap<FantasyLeague, FantasyLeagueDto>();
             CreateMap<FantasyLeagueAdmin, FantasyLeagueAdminsDto>();
             CreateMap<FantasyLeagueTeams, FantasyLeagueTeamDto>();
+
+            CreateMap<MatchdayTeamConfiguration, MatchdayTeamConfiguration>();
+            CreateMap<MatchdayTeam, MatchdayTeam>();
+            CreateMap<MatchdayTeamConfiguration, MatchdayTeamConfigDto>();
+            CreateMap<MatchdayTeam, MatchdayTeamDto>();
+
         }
     }
 }

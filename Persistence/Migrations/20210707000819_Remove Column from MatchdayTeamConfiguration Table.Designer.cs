@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Persistence;
 
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20210707000819_Remove Column from MatchdayTeamConfiguration Table")]
+    partial class RemoveColumnfromMatchdayTeamConfigurationTable
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -375,9 +377,6 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("BenchFourID")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<Guid>("BenchOneID")
                         .HasColumnType("uniqueidentifier");
 
@@ -433,8 +432,6 @@ namespace Persistence.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("MatchdayTeamID");
-
-                    b.HasIndex("BenchFourID");
 
                     b.HasIndex("BenchOneID");
 
@@ -869,12 +866,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.MatchdayTeam", b =>
                 {
-                    b.HasOne("Domain.Player", "BenchFour")
-                        .WithMany("BenchFourMatchdayTeams")
-                        .HasForeignKey("BenchFourID")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("Domain.Player", "BenchOne")
                         .WithMany("BenchOneMatchdayTeams")
                         .HasForeignKey("BenchOneID")
@@ -962,8 +953,6 @@ namespace Persistence.Migrations
                         .HasForeignKey("PlayerTwoID")
                         .OnDelete(DeleteBehavior.NoAction)
                         .IsRequired();
-
-                    b.Navigation("BenchFour");
 
                     b.Navigation("BenchOne");
 
@@ -1147,8 +1136,6 @@ namespace Persistence.Migrations
 
             modelBuilder.Entity("Domain.Player", b =>
                 {
-                    b.Navigation("BenchFourMatchdayTeams");
-
                     b.Navigation("BenchOneMatchdayTeams");
 
                     b.Navigation("BenchThreeMatchdayTeams");

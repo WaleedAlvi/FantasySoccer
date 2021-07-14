@@ -56,6 +56,7 @@ namespace Domain
         public ICollection<MatchdayTeam> BenchOneMatchdayTeams { get; set; }
         public ICollection<MatchdayTeam> BenchTwoMatchdayTeams { get; set; }
         public ICollection<MatchdayTeam> BenchThreeMatchdayTeams { get; set; }
+        public ICollection<MatchdayTeam> BenchFourMatchdayTeams { get; set; }
 
     }
 }

@@ -9,7 +9,6 @@ namespace Domain
         public Guid MatchdayID { get; set; }
         public Guid FormationID { get; set; }
         public Guid CaptainID { get; set; }
-        public Guid MatchdayTeamID { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
 

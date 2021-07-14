@@ -20,6 +20,7 @@ namespace Domain
         public Guid BenchOneID { get; set; }
         public Guid BenchTwoID { get; set; }
         public Guid BenchThreeID { get; set; }
+        public Guid BenchFourID { get; set; }
         public DateTime DateCreated { get; set; }
         public DateTime DateUpdated { get; set; }
 
@@ -38,6 +39,7 @@ namespace Domain
         public Player BenchOne { get; set; }
         public Player BenchTwo { get; set; }
         public Player BenchThree { get; set; }
+        public Player BenchFour { get; set; }
         public MatchdayTeamConfiguration MatchdayTeamConfiguration { get; set; }
     }
 }

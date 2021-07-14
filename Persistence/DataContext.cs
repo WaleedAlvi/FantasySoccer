@@ -371,7 +371,7 @@ namespace Persistence
                                                                                                             ForwardTwoID <> ForwardOneID AND
                                                                                                             ForwardTwoID <> GoalieTwoID AND
                                                                                                             ForwardTwoID <> ForwardThreeID"));
-                                                                                                            
+
 
             modelBuilder.Entity<FantasyTeam>(entity => entity.HasCheckConstraint("CHK_ForwardThree_Unique", @"ForwardThreeID <> GoalieTwoID AND 
                                                                                                               ForwardThreeID <> GoalieOneID AND
@@ -431,6 +431,7 @@ namespace Persistence
             modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.BenchOne).WithMany(p => p.BenchOneMatchdayTeams).HasForeignKey(t => t.BenchOneID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.BenchTwo).WithMany(p => p.BenchTwoMatchdayTeams).HasForeignKey(t => t.BenchTwoID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.BenchThree).WithMany(p => p.BenchThreeMatchdayTeams).HasForeignKey(t => t.BenchThreeID).OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<MatchdayTeam>().HasOne(m => m.BenchFour).WithMany(p => p.BenchFourMatchdayTeams).HasForeignKey(t => t.BenchFourID).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region MatchdayTeamConfiguration
@@ -441,7 +442,6 @@ namespace Persistence
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.Matchday).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.MatchdayID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.Formation).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.FormationID).OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.Player).WithMany(b => b.MatchdayTeamConfiguration).HasForeignKey(b => b.CaptainID).OnDelete(DeleteBehavior.NoAction);
-            modelBuilder.Entity<MatchdayTeamConfiguration>().HasOne(b => b.MatchdayTeam).WithOne(b => b.MatchdayTeamConfiguration).HasForeignKey<MatchdayTeamConfiguration>(b => b.MatchdayTeamID);
             #endregion
 
 
