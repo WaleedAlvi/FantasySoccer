@@ -12,8 +12,7 @@ namespace Application.Persons
             RuleFor(x => x.DateOfBirth).NotEmpty();
             RuleFor(x => x.CountryID).NotEmpty();
             RuleFor(x => x.TeamID).NotEmpty();
-            // RuleFor(x => x.DateCreated).();
-            // RuleFor(x => x.DateUpdated).eq();
+            RuleFor(x => x.DateCreated).NotEmpty();
         }
     }
 
@@ -27,8 +26,6 @@ namespace Application.Persons
             RuleFor(x => x.CountryID).NotEmpty();
             RuleFor(x => x.TeamID).NotEmpty();
             RuleFor(x => x.FireBaseID).NotEmpty().Length(28);
-            // RuleFor(x => x.DateCreated).();
-            // RuleFor(x => x.DateUpdated).eq();
         }
     }
 

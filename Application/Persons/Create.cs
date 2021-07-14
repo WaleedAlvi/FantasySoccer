@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
@@ -40,8 +41,8 @@ namespace Application.Persons
                     DateOfBirth = request.Person.DateOfBirth,
                     CountryID = request.Person.CountryID,
                     TeamID = request.Person.TeamID,
-                    DateCreated = request.Person.DateCreated,
-                    DateUpdated = request.Person.DateUpdated,
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
                 };
 
                 _context.Persons.Add(newPerson);
@@ -50,8 +51,8 @@ namespace Application.Persons
                 {
                     FirebaseID = request.Person.FireBaseID,
                     PersonID = newPerson.PersonID,
-                    DateCreated = request.Person.DateCreated,
-                    DateUpdated = request.Person.DateUpdated,
+                    DateCreated = DateTime.Now,
+                    DateUpdated = DateTime.Now,
                 });
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to create account");

@@ -1,6 +1,8 @@
 using System;
+using System.Collections.Generic;
 using Application.Countries;
 using Application.Teams;
+using Application.FantasyTeams;
 
 namespace Application.Persons
 {
@@ -10,9 +12,10 @@ namespace Application.Persons
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public DateTime DateOfBirth { get; set; }
+        public UserDto User { get; set; }
         public CountryDto Country { get; set; }
         public TeamDto FavouriteTeam { get; set; }
-        public UserDto User { get; set; }
+        public List<FantasyTeamDto> FantasyTeams { get; set; }
     }
 
     public class UserDto

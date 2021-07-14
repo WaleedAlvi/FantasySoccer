@@ -1,3 +1,4 @@
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 using Application.Core;
@@ -38,7 +39,10 @@ namespace Application.Persons
             {
                 var person = await _context.Persons.FindAsync(request.Person.PersonID);
                 if (person == null) return null;
+
                 _mapper.Map(request.Person, person);
+                person.DateUpdated = DateTime.Now;
+
                 var result = await _context.SaveChangesAsync() > 0;
                 if (!result) return Result<Unit>.Failure("Failed to update account");
                 return Result<Unit>.Success(Unit.Value);
